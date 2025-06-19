@@ -595,14 +595,3 @@ footer {
     clear: both;
   }
 }
-@media (max-width: 600px) {
-  .trophy-image {
-    max-width: 300px;
-    margin-top: -10px;
-  }
-  .for-responsive{
-    display: block;
-    height: 150px;
-    clear: both;
-  }
-}
