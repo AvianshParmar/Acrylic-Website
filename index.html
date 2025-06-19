@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Mukesh Enterprise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link href="css/main.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      
+    <script type="importmap">
+
+</script>
+</head>
+<body>
+ <div id="particles-js"></div>
+
+ <header class="glass-navbar">
+  <div class="logo">
+    <img src="images/LOGO.png" alt="Mukesh Enterprise Logo">
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav>
+    <ul id="nav-list">
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1 class="char-reveal" style="margin-bottom: 10px; " data-text="We Don’t Just Make Acrylic. We Shape Innovation."></h1>
+        <p class="char-reveal" data-text="High-quality acrylic rods, mementos, trophies, and more – engineered   with precision, delivered with trust."></p>
+        <a href="#products" class="cta-btn">Explore Our Work</a>
+      </div>
+      <div class="hero-right">
+        <img src="images/trophy2.png" alt="Acrylic Rods" class="trophy-image">
+        <!-- <h2 class="char-reveal" style="color: white; margin-top: -40px;" data-text="Acrylic Trophy."></h2> -->
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-content">
+      <p>Mukesh Enterprise, based in Jamnagar (Gujarat, India), specializes in Cast Acrylic Round Rods, Acrylic Shields, Personalized Gifts, Corporate Awards, School Trophies, and more. Established in 2019, we guarantee unmatched quality through rigorous testing, flexible orders, and on-time delivery. Our facility produces up to 3,000 units/month, catering to enterprises of all sizes.</p>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2 class="section-title">Our Products</h2>
+    <div class="products-grid">
+      <!-- Repeat this card for each merged product -->
+      <div class="product-card">
+        <img src="./images/cast-rod.jpg" alt="Cast Acrylic Round Rod"/>
+        <div class="product-info">
+          <div class="product-title">Cast Acrylic Round Rod</div>
+          <div class="product-desc">Crystal-clear acrylic rod in multiple diameters. Ideal for industrial and decorative use.</div>
+          <a href="#contact-form" class="order-btn">Enquire Now</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="./images/designer-trophy.jpg" alt="Designer Acrylic Trophy"/>
+        <div class="product-info">
+          <div class="product-title">Designer Acrylic Trophy</div>
+          <div class="product-desc">Elegant customized trophy for corporate events.</div>
+          <a href="#contact-form" class="order-btn">Enquire Now</a>
+        </div>
+      </div>
+      <!-- Add more cards here -->
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">"Great quality and timely delivery!"</div>
+      <div class="testimonial-card">"Our go-to vendor for acrylic trophies."</div>
+      <div class="testimonial-card">"Professional, precise, and personalized service."</div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2 class="section-title">Gallery</h2>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;">
+      <img src="images/trophy.png" alt="Product 1"/>
+      <img src="images/trophy1.png" alt="Product 2"/>
+      <img src="images/trophy2.png" alt="Product 3"/>
+    </div>
+  </section>
+
+  <section id="product-slider">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="./product1.jpg" alt="Product 1"/></div>
+        <div class="swiper-slide"><img src="./product2.jpg" alt="Product 2"/></div>
+        <div class="swiper-slide"><img src="./product3.jpg" alt="Product 3"/></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+  <section id="contact-form">
+    <h2 class="section-title">Get In Touch</h2>
+    <div style="max-width:600px;margin:auto;">
+      <form action="https://formspree.io/f/your-id" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required/>
+        <input type="email" name="email" placeholder="Your Email" required/>
+        <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Enquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Mukesh Enterprise | +91‑9979959364 | bhavikshah14@gmail.com<br/>
+    Survey No. 238/245/246, Plot 35, Lakhabavad, Opp Sparsh Biotech, Jamnagar–361006
+  </footer>
+
+<a href="https://wa.me/919979959364" class="whatsapp-float" target="_blank" rel="noopener">
+  <img src="https://img.icons8.com/fluency/48/000000/whatsapp.png" alt="WhatsApp" />
+  <span class="wa-text">Get in Touch</span>
+</a>
+
+<script>
+  const cursor = document.querySelector('.custom-cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+</script>
+
+  <script >
+    if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+    window.onload = () => {
+  window.scrollTo(0, 0);
+};
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({
+  autoRefreshEvents: "DOMContentLoaded,load,resize"
+});
+    gsap.utils.toArray('section, .product-card').forEach((el,i)=>{
+      gsap.from(el,{ scrollTrigger:{
+          trigger:el,start:'top 85%',
+          toggleActions:'play none none reverse'
+        },
+        opacity:0, y:50, duration:1.5, delay:i*0.1
+      });
+    });
+
+    document.querySelectorAll(".char-reveal").forEach((el) => {
+  const text = el.getAttribute("data-text");
+  el.innerHTML = "";
+
+  text.split("").forEach((char) => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    span.classList.add("char-span");
+    el.appendChild(span);
+  });
+
+  gsap.to(el.querySelectorAll(".char-span"), {
+    scrollTrigger: {
+      trigger: el,
+      start: "top 85%",
+    },
+    opacity: 1,
+    // y: 0,
+    duration: 1,
+    stagger: {
+      amount: 1.5,
+      from: "start"
+    },
+    ease: "power2.out"
+  });
+});
+
+
+    new Swiper('.mySwiper',{ loop:true, autoplay:{delay:3000}, pagination:{el:'.swiper-pagination',clickable:true} });
+    function toggleMenu() {document.getElementById('nav-list').classList.toggle('active');}
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80
+        },
+        "color": {
+          "value": "#00ff5e"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true
+        },
+        "size": {
+          "value": 4,
+          "random": true
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.2,
+          "direction": "none",
+          "random": true,
+          "straight": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true },
+          "onclick": { "enable": true }
+        }
+      },
+      "retina_detect": true
+    });
+    gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray(".animated-text").forEach((text) => {
+  const spans = text.querySelectorAll("span");
+
+  gsap.to(spans, {
+    scrollTrigger: {
+      trigger: text,
+      start: "top 50%",
+    },
+    opacity: 1,
+    y: 0,
+    duration: 2,
+    stagger: 0.3,
+    ease: "power2.out",
+  });
+});
+    </script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// Scene + Camera Setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
+camera.position.set(0, 6, 20);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.getElementById("acrylic3D").appendChild(renderer.domElement);
+
+// Orbit Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.autoRotate = true;
+controls.enableZoom = false;
+
+// Handle Resizing
+window.addEventListener('resize', () => {
+  const w = window.innerWidth, h = window.innerHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w/h;
+  camera.updateProjectionMatrix();
+});
+
+// Lighting + EnvMap
+const envMap = new THREE.CubeTextureLoader().load([
+  'https://threejs.org/examples/textures/cube/Bridge2/posx.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/negx.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/posy.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/negy.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/posz.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/negz.jpg'
+]);
+scene.environment = envMap;
+scene.background = null;
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const dirLight = new THREE.DirectionalLight(0xffffff, 1.3);
+dirLight.position.set(10, 10, 5);
+scene.add(dirLight);
+
+// Glossy white material
+const glassMat = new THREE.MeshPhysicalMaterial({
+  color: 0xffffff,
+  transmission: 0.5,
+  thickness: 2,
+  roughness: 0.05,
+  metalness: 0,
+  clearcoat: 1,
+  clearcoatRoughness: 0,
+  ior: 1.45,
+  envMapIntensity: 1.5,
+  transparent: false
+});
+
+// Trophy Shape 1
+const shape1 = new THREE.Shape();
+shape1.moveTo(0, 0);
+shape1.lineTo(0, 5);
+shape1.quadraticCurveTo(1.5, 6, 3, 10);
+shape1.quadraticCurveTo(4, 6, 3, 0);
+shape1.lineTo(0, 0);
+const geo1 = new THREE.ExtrudeGeometry(shape1, { depth: 0.5, bevelEnabled: false });
+geo1.center();
+
+// Trophy Shape 2 (leaf-like)
+const shape2 = new THREE.Shape();
+shape2.moveTo(0, 0);
+shape2.quadraticCurveTo(0.1, 0, 3, 10);
+shape2.quadraticCurveTo(5.5, 4, 3, 0);
+shape2.lineTo(0, 0);
+const geo2 = new THREE.ExtrudeGeometry(shape2, { depth: 0.5, bevelEnabled: false });
+geo2.center();
+// Cylindrical rod
+function createRodCy(xOffset) {
+  const rod = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.3, 0.3, 6, 64),
+    glassMat.clone()
+  );
+  rod.position.set(xOffset, 3, -6);
+  scene.add(rod);
+  return rod;
+}
+// Function to create trophy + base
+function createTrophy(geo, xOffset) {
+  const grp = new THREE.Group();
+  const trophy = new THREE.Mesh(geo, glassMat.clone());
+  trophy.position.y = 2.2;
+  grp.add(trophy);
+
+  const base = new THREE.Mesh(
+    new THREE.BoxGeometry(4, 2.6,3),
+    new THREE.MeshStandardMaterial({ color: 0x111111 })
+  );
+  base.position.y = -3;
+  base.position.x = -.2;
+  grp.add(base);
+
+  grp.position.x = xOffset;
+  scene.add(grp);
+  return grp;
+}
+
+
+
+// Square rod
+function createRodSq(xOffset) {
+  const rod = new THREE.Mesh(
+    new THREE.BoxGeometry(0.6, 6, 0.6),
+    glassMat.clone()
+  );
+  rod.position.set(xOffset, 3, -5);
+  scene.add(rod);
+  return rod;
+}
+
+// Add Content
+const trophyA = createTrophy(geo1, -5);
+
+const rodC = createRodCy(-1.5);
+const rodS = createRodSq(1.5);
+
+// Animation Loop
+let t = 0;
+function animate() {
+   //requestAnimationFrame(animate);
+  // t += 0.02;
+
+  //Rotate all in place & subtle jump
+  // [trophyA, trophyB, rodC, rodS].forEach(obj => {
+  //   obj.rotation.y += 0.0065;
+  //   obj.position.y = Math.sin(t) * 0.8;
+  // });
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+
+</body>
+</html>

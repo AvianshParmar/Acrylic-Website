@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fast Acrylic Trophy</title>
+  <style>body { margin:0; overflow:hidden; }</style>
+</head>
+<body>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.152.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.152.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // Scene & camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 100);
+    camera.position.set(0, 1.5, 4);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(innerWidth, innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    window.addEventListener('resize', () => {
+      const w = innerWidth, h = innerHeight;
+      camera.aspect = w/h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const point = new THREE.PointLight(0xffffff, 0.8);
+    point.position.set(2, 3, 2);
+    scene.add(point);
+
+    // Acrylic material
+    const acrylic = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      transmission: 0.85,
+      thickness: 0.5,
+      roughness: 0.1,
+      metalness: 0,
+      clearcoat: 1,
+      ior: 1.45,
+      transparent: true
+    });
+
+    // Trophy structure
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 0.2, 32), acrylic);
+    base.position.y = 0.1;
+    scene.add(base);
+
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1, 32), acrylic);
+    stem.position.y = 0.7;
+    scene.add(stem);
+
+    const cup = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.08, 16, 100), acrylic);
+    cup.position.y = 1.2;
+    cup.rotation.x = Math.PI / 2;
+    scene.add(cup);
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      cup.rotation.z += 0.005;
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>

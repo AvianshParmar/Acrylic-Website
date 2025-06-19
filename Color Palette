@@ -1,0 +1,50 @@
+Where to Use These Colors
+🔹 Header / Navbar
+Background: #111111
+
+Active Link: #00FF5E
+
+Hover Link: #ffffff
+
+🔹 Hero Section
+Heading Text: #00FF5E
+
+Paragraph Text: #c0c0c0
+
+Background: #0a0a0a
+
+🔹 Buttons / Call to Action (CTA)
+Background: #00FF5E
+
+Text: #0a0a0a
+
+Hover Background: #ffffff
+
+Hover Text: #00FF5E
+
+🔹 Product Cards
+Card Background: #1a1a1a
+
+Card Title: #00FF5E
+
+Card Text: #c0c0c0
+
+Hover Shadow: 0 0 15px #00FF5E
+
+🔹 Footer
+Background: #111111
+
+Text: #777777
+
+Link Hover: #ffffff
+
+🔹 3D Section Background
+Solid: #000000
+
+Optionally use: linear-gradient(to bottom, #0a0a0a, #111111)
+
+Gradient Suggestion (for banners/buttons):
+background: linear-gradient(135deg, #00FF5E 0%, #00d9ff 100%);
+
+Glowing Border Example:
+box-shadow: 0 0 15px rgba(0, 255, 94, 0.8);

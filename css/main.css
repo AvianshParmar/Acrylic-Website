@@ -1,0 +1,465 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+  background: #0a0a0a;
+  color: white;
+   overflow-y: scroll;  
+  position: relative;
+}
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, #0a0a0a 0%, #0f0f0f 100%);
+}
+
+/* 🔹 Glassmorphism Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 255, 94, 0.1);
+}
+
+.logo img {
+  /* filter: drop-shadow(0 0px 30px rgb(0, 255, 34));
+  transition: transform 0.3s ease; */
+  max-width: 200px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: #00ff5e;
+  text-decoration: none;
+  animation: glow 1.2s ease-in-out infinite alternate;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #fff;
+  font-size: 17px;
+  transition: 1s;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    display: none;
+    background: #111;
+    position: absolute;
+    top: 60px;
+    right: 2rem;
+    padding: 1rem;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    color: #00ff5e;
+    cursor: pointer;
+  }
+}
+/* Whatsapp floting icon */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #00ff5e, #00cc44);
+  color:black;
+  border-radius: 50px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  z-index: 999;
+  box-shadow: 0 4px 18px rgba(0, 255, 94, 0.3);
+  transition: all 1s ease;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
+.whatsapp-float:hover {
+  background: linear-gradient(135deg, #00cc44, #00ff5e);
+  color: #ffffff;
+  transition: 1s;
+  transform: scale(1.06) translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 255, 94, 0.5);
+  filter: brightness(1.1);
+}
+
+.whatsapp-float img {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+
+
+/* 🔹 HERO Section: Left Aligned */
+section {
+  padding:  0rem 0rem 4rem 4rem;
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* max-width: 1400px; */
+  width: 100%;
+}
+.hero-left {
+  max-width: 700px;
+}
+
+.hero-left h1 {
+  font-size: 3rem;
+  color: #00ff5e;
+  animation: glow 1.2s ease-in-out infinite alternate;
+}
+.hero-right h2 {
+  font-size: 2rem;
+  color: #f0f0f0;
+  animation: glowwhite 1.2s ease-in-out infinite alternate;
+}
+.hero-left p {
+  font-size: 1.2rem;
+  color: #c0c0c0;
+  margin-bottom: 45px;
+}
+.hero-right {
+  flex: 1;
+  height: 500px;
+  position: relative;
+}
+
+
+#acrylic3D {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #00ff5e, #00cc44);
+  color: #0a0a0a;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 255, 94, 0.3), 0 0 8px rgba(0, 255, 94, 0.4);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: none;
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
+/* Hover keeps existing effects + enhances glow */
+.cta-btn:hover {
+  background: linear-gradient(135deg, #00cc44, #00ff5e);
+  color: #ffffff;
+  transform: scale(1.06) translateY(-3px);
+  box-shadow:
+    0 6px 25px rgba(0, 255, 94, 0.5),
+    0 0 15px rgba(0, 255, 94, 0.6),
+    0 0 30px rgba(0, 255, 94, 0.4);
+  filter: brightness(1.1);
+}
+
+/* Glowing animation */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 4px 25px rgba(0, 255, 94, 0.3), 0 0 5px rgba(0, 255, 94, 0.3);
+  }
+  50% {
+    /* box-shadow: 0 4px 25px rgba(0, 255, 94, 0.5), 0 0 12px rgba(0, 255, 94, 0.5); */
+    box-shadow: 0 3px 115px rgba(0, 255, 94, 0.3), 0 0px 12px rgba(0, 255, 94, 2.4)
+  }
+  100% {
+    box-shadow: 0 4px 25px rgba(0, 255, 94, 0.3), 0 0 5px rgba(0, 255, 94, 0.3);
+  }
+}.char-reveal {
+  white-space: pre-wrap; /* Ensures spacing works */
+}
+
+.char-reveal .char-span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s;  
+}
+
+/* main rods image */
+.trophy-image {
+  width: auto;
+  /* max-width: 400px; */
+  margin-top: -4rem;
+  height: 600px;
+  animation: float 5s ease-in-out infinite;
+  filter: drop-shadow(0 -50px 120px rgba(255, 255, 255, 223.4));
+  transition: transform 0.3s ease;
+}
+
+.trophy-image:hover {
+  transform: scale(1.05);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+
+/* Light streak animation on hover */
+.cta-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: skewX(-20deg);
+  transition: 0.8s;
+}
+
+.cta-btn:hover::after {
+  left: 100%;
+}
+.hero-right {
+  /* flex: 1;
+  display: flex; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left, .hero-right {
+    width: 100%;
+  }
+
+  .hero-right {
+    margin-top: 2rem;
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 25px #00ff5e;
+  }
+
+  to {
+    text-shadow: 0 0 25px #00ff5e;
+  }
+}
+@keyframes glowwhite {
+  from {
+    text-shadow: 0 0 10px #ffffff;
+  }
+
+  to {
+    text-shadow: 0 0 25px #ffffff;
+  }
+}
+
+/* ✅ YOUR ORIGINAL STYLES CONTINUE */
+h2.section-title {
+  animation: glow 1.2s ease-in-out infinite alternate;
+  text-align: center;
+  font-size: 2rem;
+  color: #00ff5e;
+  margin-bottom: 2rem;
+}
+
+.about-content p {
+  color: #ccc;
+  line-height: 1.8;
+  text-align: justify;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.products-grid, .testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-card, .testimonial-card {
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.product-card:hover, .testimonial-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px #00ff5e;
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #333;
+}
+
+.product-info {
+  padding: 1rem;
+}
+
+.product-title {
+  color: #00ff5e;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.product-desc {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.order-btn {
+  display: inline-block;
+  margin-top: 0.8rem;
+  background: #00ff5e;
+  color: #0a0a0a;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.order-btn:hover {
+  background: #fff;
+  color: #00ff5e;
+}
+
+.testimonial-card {
+  font-style: italic;
+  color: #bbb;
+  text-align: center;
+}
+
+#gallery img {
+  width: 250px;
+  border-radius: 10px;
+  margin: 0.5rem;
+  transition: transform 0.3s;
+}
+
+#gallery img:hover {
+  transform: scale(1.05);
+}
+
+.swiper {
+  max-width: 800px;
+  margin: auto;
+}
+
+footer {
+  text-align: center;
+  color: #dbdbdb;
+  font-size: 0.9rem;
+  text-shadow: 0 0 25px #59e134;
+  border-top: 1px solid #333;
+  padding: 2rem;
+}
+
+#contact-form input,
+#contact-form textarea,
+#contact-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+#contact-form button {
+  /* background: #00ff5e; */
+    background: linear-gradient(135deg, #00ff5e, #00cc44);
+  color: #0a0a0a;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 255, 94, 0.3), 0 0 8px rgba(0, 255, 94, 0.4);
+  transition: all 1s ease;
+  backdrop-filter: blur(10px);
+  border: none;
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
+#contact-form button:hover {
+  background: linear-gradient(135deg, #00cc44, #00ff5e);
+  color: #ffffff;
+  transform: scale(1.06) translateY(-3px);
+  box-shadow:
+    0 6px 25px rgba(0, 255, 94, 0.5),
+    0 0 15px rgba(0, 255, 94, 0.6),
+    0 0 30px rgba(0, 255, 94, 0.4);
+  filter: brightness(1.1);
+}
