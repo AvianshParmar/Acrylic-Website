@@ -4,7 +4,9 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
+.for-responsive{
+ display: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -240,7 +242,12 @@ section {
 
 /* main rods image */
 .trophy-image {
-  width: auto;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  /* margin-top: -4rem; */
+
+  /* width: auto; */
   /* max-width: 400px; */
   margin-top: -4rem;
   height: 600px;
@@ -297,6 +304,11 @@ section {
 
   .hero-right {
     margin-top: 2rem;
+  }
+  .for-responsive{
+    display: block;
+    height: 150px;
+    clear: both;
   }
 }
 
@@ -462,4 +474,135 @@ footer {
     0 0 15px rgba(0, 255, 94, 0.6),
     0 0 30px rgba(0, 255, 94, 0.4);
   filter: brightness(1.1);
+}
+
+
+/* Responsive */
+/* Responsive Typography & Padding */
+@media screen and (max-width: 1200px) {
+  .hero-left h1 {
+    font-size: 2.5rem;
+  }
+  .hero-left p {
+    font-size: 1.1rem;
+  }
+   .for-responsive{
+    display: block;
+    height: 100px;
+    clear: both;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  section {
+    padding: 2rem 2rem;
+  }
+  .hero-left h1 {
+    font-size: 2.2rem;
+  }
+  .hero-left p {
+    font-size: 1rem;
+  }
+  .cta-btn {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.6rem;
+  }
+   .for-responsive{
+    display: block;
+    height: 100px;
+    clear: both;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: row;
+    padding: 0.8rem 1.5rem;
+  }
+
+  nav ul {
+    right: 1rem;
+    width: auto;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-left {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .hero-right {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .trophy-image {
+    max-width: 90%;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .cta-btn {
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+  }
+
+  .whatsapp-float {
+    bottom: 15px;
+    right: 15px;
+    padding: 8px 14px;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-left h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-left p {
+    font-size: 0.95rem;
+  }
+
+  .trophy-image {
+    height: 280px;
+  }
+  .product-card img,
+  #gallery img {
+    height: 140px;
+  }
+
+  .swiper {
+    max-width: 100%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+   .for-responsive{
+    display: block;
+    height: 150px;
+    clear: both;
+  }
+}
+@media (max-width: 600px) {
+  .trophy-image {
+    max-width: 300px;
+    margin-top: -10px;
+  }
+  .for-responsive{
+    display: block;
+    height: 150px;
+    clear: both;
+  }
 }
