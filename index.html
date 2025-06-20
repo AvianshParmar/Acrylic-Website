@@ -18,7 +18,7 @@
 
  <header class="glass-navbar">
   <div class="logo">
-    <img src="images/LOGO.png" alt="Mukesh Enterprise Logo">
+    <a href="index.html"><img src="images/LOGO.png" alt="Mukesh Enterprise Logo"></a>
   </div>
   <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   <nav>
@@ -41,50 +41,48 @@
       </div>
       <div class="hero-right">
         <img src="images/trophy2.png" alt="Acrylic Rods" class="trophy-image">
-        <!-- <h2 class="char-reveal" style="color: white; margin-top: -40px;" data-text="Acrylic Trophy."></h2> -->
       </div>
     </div>
   </section>
-<!-- ADD THIS: Spacer before next content -->
 
 <section id="about" class="about-section">
   <h2 class="section-title">About Us</h2>
 
   <!-- Row 1 -->
-  <div class="about-row">
-    <div class="about-col text-left about-block">
-      <h3 class="highlight">Who We Are</h3>
-      <p>
-        <strong>Mukesh Enterprise</strong> is a leading acrylic manufacturer based in <strong>Jamnagar, Gujarat</strong>. Since <strong>2019</strong>, we’ve produced top-quality acrylic rods, awards, trophies, and customized mementos. With a skilled team and advanced machinery, we deliver creative, durable, and visually striking acrylic products to businesses, schools, and corporations.
-      </p>
-    </div>
-    <div class="about-col about-block">
-      <img src="images/LOGO.png" alt="Mukesh Enterprise Logo" class="about-logo">
-    </div>
-  </div>
-
-  <!-- Row 2 -->
-  <div class="about-row reverse">
-    <div class="about-col about-block">
-      <div class="about-video-wrapper">
-        <iframe width="100%" height="240" src="https://www.youtube.com/embed/T6CkZQbUg10?autoplay=0&mute=1&rel=0"
-          title="Acrylic Trophy Showcase" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+    <div class="about-row">
+      <div class="about-col text-left about-block">
+        <h3 class="highlight">Who We Are</h3>
+        <p>
+          <strong>Mukesh Enterprise</strong> is a leading acrylic manufacturer based in <strong>Jamnagar, Gujarat</strong>. Since <strong>2019</strong>, we’ve produced top-quality acrylic rods, awards, trophies, and customized mementos. With a skilled team and advanced machinery, we deliver creative, durable, and visually striking acrylic products to businesses, schools, NGO's and corporates.
+        </p>
+      </div>
+      <div class="about-col about-block">
+        <img src="images/LOGO.png" alt="Mukesh Enterprise Logo" class="about-logo">
       </div>
     </div>
-    <div class="about-col text-left about-block">
-      <h3 class="highlight">Why Choose Us</h3>
-      <p>With a monthly capacity of <strong>3,000+ units</strong>, Mukesh Enterprise ensures timely delivery, consistent quality, and complete client satisfaction. Here’s why our customers trust us:</p>
-      <ul class="about-list">
-        <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Custom-made acrylic trophies and rods</li>
-        <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Fast production with tight quality control</li>
-        <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Transparent, ethical business values</li>
-        <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Nationwide and international delivery</li>
-      </ul>
-      <a href="downloads/Mukesh-Enterprise-Brochure.pdf" class="brochure-btn" download>Download Company Brochure</a>
+
+  <!-- Row 2 -->
+    <div class="about-row reverse">
+      <div class="about-col about-block">
+        <div class="about-video-wrapper">
+          <iframe width="100%" height="240" src="https://www.youtube.com/embed/T6CkZQbUg10?autoplay=0&mute=1&rel=0"
+            title="Acrylic Trophy Showcase" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="about-col text-left about-block">
+        <h3 class="highlight">Why Choose Us</h3>
+        <p>With a monthly capacity of <strong>3,000+ units</strong>, Mukesh Enterprise ensures timely delivery, consistent quality, and complete client satisfaction. Here’s why our customers trust us:</p>
+        <ul class="about-list">
+          <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Custom-made acrylic trophies and rods</li>
+          <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Fast production with tight quality control</li>
+          <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Transparent, ethical business values</li>
+          <li><img src="https://img.icons8.com/color/24/ok--v1.png"/> Nationwide and international delivery</li>
+        </ul>
+        <a href="downloads/Mukesh-Enterprise-Brochure.pdf" class="brochure-btn" download>Download Company Brochure</a>
+      </div>
     </div>
-  </div>
 </section>
 
   <section id="products">
@@ -100,7 +98,7 @@
         </div>
       </div>
       <div class="product-card">
-        <img src="./images/designer-trophy.jpg" alt="Designer Acrylic Trophy"/>
+        <img src="images/trophy3.jpg" alt="Designer Acrylic Trophy"/>
         <div class="product-info">
           <div class="product-title">Designer Acrylic Trophy</div>
           <div class="product-desc">Elegant customized trophy for corporate events.</div>
@@ -187,32 +185,47 @@ window.onbeforeunload = function () {
       });
     });
 
-    document.querySelectorAll(".char-reveal").forEach((el) => {
+  document.querySelectorAll(".char-reveal").forEach((el) => {
   const text = el.getAttribute("data-text");
   el.innerHTML = "";
 
-  text.split("").forEach((char) => {
-    const span = document.createElement("span");
-    span.textContent = char;
-    span.classList.add("char-span");
-    el.appendChild(span);
+  const words = text.trim().split(" ");
+  words.forEach((word, wordIndex) => {
+    const wordSpan = document.createElement("span");
+    wordSpan.classList.add("word");
+
+    [...word].forEach((char) => {
+      const charSpan = document.createElement("span");
+      charSpan.textContent = char;
+      charSpan.classList.add("char-span");
+      wordSpan.appendChild(charSpan);
+    });
+
+    el.appendChild(wordSpan);
+
+    // Add space between words (not as a character span)
+    if (wordIndex < words.length - 1) {
+      const space = document.createTextNode(" ");
+      el.appendChild(space);
+    }
   });
 
+  // Animate each character
   gsap.to(el.querySelectorAll(".char-span"), {
     scrollTrigger: {
       trigger: el,
       start: "top 85%",
     },
     opacity: 1,
-    // y: 0,
     duration: 1,
     stagger: {
       amount: 1.5,
-      from: "start"
+      from: "start",
     },
     ease: "power2.out"
   });
 });
+
 
 
     new Swiper('.mySwiper',{ loop:true, autoplay:{delay:3000}, pagination:{el:'.swiper-pagination',clickable:true} });

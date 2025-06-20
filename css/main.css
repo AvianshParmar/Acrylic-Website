@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+ ;
+}
+html{
+  scroll-behavior: smooth;
 }
 .for-responsive{
  display: none;
@@ -11,11 +15,12 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  scroll-behavior: auto;
+  /* scroll-behavior: auto; */
   background: #0a0a0a;
   color: white;
    overflow-y: scroll;  
   position: relative;
+  cursor: "images/LOGO1.jpg",auto;
 }
 
 #particles-js {
@@ -47,6 +52,7 @@ header {
   /* filter: drop-shadow(0 0px 30px rgb(0, 255, 34));
   transition: transform 0.3s ease; */
   max-width: 200px;
+  cursor: pointer;
 }
 
 nav ul {
@@ -133,7 +139,7 @@ section {
   width: 100%;
 }
 .hero-left {
-  max-width: 700px;
+  max-width: 55%;
 }
 
 .hero-left h1 {
@@ -207,16 +213,26 @@ section {
   100% {
     box-shadow: 0 4px 25px rgba(0, 255, 94, 0.3), 0 0 5px rgba(0, 255, 94, 0.3);
   }
-}.char-reveal {
-  white-space: pre-wrap; /* Ensures spacing works */
+}
+.char-reveal {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.5;
+  gap: 0.2em;
+  justify-content: flex-start;
+}
+
+.char-reveal .word {
+  display: inline-flex;
+  flex-wrap: nowrap;
 }
 
 .char-reveal .char-span {
   display: inline-block;
   opacity: 0;
-  transform: translateY(20px);
-  transition: 1s;  
+  white-space: pre;
 }
+
 
 /* main rods image */
 .trophy-image {
@@ -435,15 +451,7 @@ h2.section-title {
 }
 
 @media (max-width: 768px) {
-  .about-row,
-  .about-row.reverse {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .about-col {
-    width: 100%;
-  }
+ 
 }
 /* End of About Secction */
 
@@ -469,10 +477,11 @@ h2.section-title {
 }
 
 .product-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 1px solid #333;
+    width: 100%;
+    height: auto;
+    max-height: 19rem;
+    object-fit: contain;
+    border-bottom: 1px solid #333;
 }
 
 .product-info {
@@ -618,6 +627,10 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+  .char-reveal {
+    justify-content: center;
+    text-align: center;
+  }
   header {
     flex-direction: row;
     padding: 0.8rem 1.5rem;
@@ -669,6 +682,7 @@ footer {
   }
 
   .trophy-image {
+    display: none;
     max-width: 90%;
     height: auto;
     margin-top: 0;
@@ -688,6 +702,17 @@ footer {
   .section-title {
     font-size: 1.7rem;
   }
+   .about-row,
+  .about-row.reverse {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-col {
+    width: 100%;
+    text-align: center;
+  }
+  
 }
 
 @media screen and (max-width: 480px) {
@@ -720,3 +745,7 @@ footer {
     clear: both;
   }
 }
+
+
+
+
