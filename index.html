@@ -102,7 +102,7 @@
         <img src="images/rods.png" alt="Cast Acrylic Rod">
         <div class="product-info">
           <div class="product-title">
-            Transparent Cast Acrylic Rods (UV Resistant)
+            Acrylic Rods
           </div>
           <div class="product-desc readmore-container">
             <span class="short-text">
@@ -122,7 +122,7 @@
         <img src="images/trophy3.jpg" alt="Custom Acrylic Trophy">
         <div class="product-info">
           <div class="product-title">
-            Custom Acrylic Trophy for Corporate Awards
+            Custom Acrylic Trophy
           </div>
           <div class="product-desc readmore-container">
             <span class="short-text">
@@ -142,7 +142,7 @@
         <img src="images/trophy1.png" alt="Personalized Acrylic Memento">
         <div class="product-info">
           <div class="product-title">
-            Personalized Acrylic Mementos for Recognition
+            Acrylic Mementos
           </div>
           <div class="product-desc readmore-container">
             <span class="short-text">
@@ -162,6 +162,46 @@
       <!-- Add more cards here -->
     </div>
   </section>
+  <section id="stats" class="stats-section">
+    <h2 class="section-title">Our Impact</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><img src="images/done.png" width="50" alt="order icone" ></div>
+        <h3><span class="count" data-target="3000">0</span><span class="plus-sign">+</span></h3>  
+        <p>Completed Orders</p>
+        <!-- <div class="progress-bar">
+          <div class="bar-fill" data-progress="95"></div>
+        </div> -->
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌍</div>
+        <h3><span class="count" data-target="25">0</span><span class="plus-sign">+</span></h3>
+        <p>Countries Exported</p>
+        <!-- <div class="progress-bar">
+          <div class="bar-fill" data-progress="95"></div>
+        </div> -->
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🧑‍🤝‍🧑</div>
+        <h3><span class="count" data-target="120">0</span><span class="plus-sign">+</span></h3>
+        <p>Happy Clients</p>
+        <!-- <div class="progress-bar">
+          <div class="bar-fill" data-progress="95"></div>
+        </div> -->
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <h3><span class="count" data-target="6">0</span><span class="plus-sign">+</span></h3>
+        <p>Years of Experience</p>
+        <!-- <div class="progress-bar">
+          <div class="bar-fill" data-progress="95"></div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+
+
 
   <section id="testimonials">
     <h2 class="section-title">Testimonials</h2>
@@ -182,86 +222,75 @@
   </section>
 
   <section id="product-slider">
-  <h2 class="section-title">Featured Products</h2>
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="images/trophy1.png" alt="Product 1" class="slider-image" />
+    <h2 class="section-title">Featured Products</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/trophy1.png" alt="Product 1" class="slider-image" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/trophy3.jpg" alt="Product 2" class="slider-image" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/trophy2.png" alt="Product 3" class="slider-image" />
+        </div>
       </div>
-      <div class="swiper-slide">
-        <img src="images/trophy3.jpg" alt="Product 2" class="slider-image" />
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+
+  <section id="contact-form">
+    <h2 class="section-title">Get In Touch</h2>
+
+    <div class="contact-container reverse-layout">
+      <!-- Google Map (LEFT) -->
+      <div class="contact-map">
+        <!-- <h3 class="map-heading">📍 Our Location on Google M   -->
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.662059797218!2d70.00631699999999!3d22.4313054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3957155d019f428f%3A0xfce5cbf954d5d7e!2sMukesh%20Enterprise!5e0!3m2!1sen!2sin!4v1718963910000!5m2!1sen!2sin"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <a href="https://maps.app.goo.gl/AHqsmjKg7ayeQLAU6" class="map-inline-btn" target="_blank" rel="noopener">
+            Open in Maps
+          </a>
+        </div>
       </div>
-      <div class="swiper-slide">
-        <img src="images/trophy2.png" alt="Product 3" class="slider-image" />
+
+      <!-- Contact Form (RIGHT) -->
+      <div class="contact-form">
+        <form id="enquiryForm">
+          <div class="input-icon-group">
+            <img src="https://img.icons8.com/ios-filled/20/user.png" alt="Name Icon" />
+            <input type="text" name="name" placeholder="Your Name" required />
+          </div>
+
+          <div class="input-icon-group">
+            <img src="https://img.icons8.com/ios-filled/20/new-post.png" alt="Email Icon" />
+            <input type="email" name="email" placeholder="Your Email" required />
+          </div>
+
+          <div class="input-icon-group textarea">
+            <img src="https://img.icons8.com/ios-filled/20/speech-bubble.png" alt="Message Icon" />
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+          </div>
+
+          <button type="submit">Send Enquiry</button>
+        </form>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
-  </div>
-</section>
+  </section>
 
-
-<section id="contact-form">
-  <h2 class="section-title">Get In Touch</h2>
-
-  <div class="contact-container reverse-layout">
-    <!-- Google Map (LEFT) -->
-    <div class="contact-map">
-      <!-- <h3 class="map-heading">📍 Our Location on Google M   -->
-      <div class="map-wrapper">
-       <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.662059797218!2d70.00631699999999!3d22.4313054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3957155d019f428f%3A0xfce5cbf954d5d7e!2sMukesh%20Enterprise!5e0!3m2!1sen!2sin!4v1718963910000!5m2!1sen!2sin"
-  width="100%"
-  height="350"
-  style="border:0;"
-  allowfullscreen=""
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-        <a
-  href="https://maps.app.goo.gl/AHqsmjKg7ayeQLAU6"
-  class="map-inline-btn"
-  target="_blank"
-  rel="noopener">
-  Open in Maps
-</a>
-      </div>
-    </div>
-
-    <!-- Contact Form (RIGHT) -->
-    <div class="contact-form">
-      <form id="enquiryForm">
-        <div class="input-icon-group">
-          <img src="https://img.icons8.com/ios-filled/20/user.png" alt="Name Icon" />
-          <input type="text" name="name" placeholder="Your Name" required />
-        </div>
-
-        <div class="input-icon-group">
-          <img src="https://img.icons8.com/ios-filled/20/new-post.png" alt="Email Icon" />
-          <input type="email" name="email" placeholder="Your Email" required />
-        </div>
-
-        <div class="input-icon-group textarea">
-          <img src="https://img.icons8.com/ios-filled/20/speech-bubble.png" alt="Message Icon" />
-          <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-        </div>
-
-        <button type="submit">Send Enquiry</button>
-      </form>
+  <div id="success-popup" class="popup">
+    <div class="popup-content">
+      <img src="https://img.icons8.com/emoji/48/checked-emoji.png" alt="Success" />
+      <h3>Message Sent!</h3>
+      <p>Thank you for contacting us. We'll get back to you soon.</p>
+      <button onclick="closePopup()">Close</button>
     </div>
   </div>
-</section>
-
-<div id="success-popup" class="popup">
-  <div class="popup-content">
-    <img src="https://img.icons8.com/emoji/48/checked-emoji.png" alt="Success" />
-    <h3>Message Sent!</h3>
-    <p>Thank you for contacting us. We'll get back to you soon.</p>
-    <button onclick="closePopup()">Close</button>
-  </div>
-</div>
-
-
-
 
   <footer>
     &copy; 2025 Mukesh Enterprise | +91‑9979959364 | bhavikshah14@gmail.com<br />
@@ -280,7 +309,7 @@
     window.onload = () => {
       window.scrollTo(0, 0);
     };
-    
+
     window.onbeforeunload = function () {
       window.scrollTo(0, 0);
     };
@@ -289,7 +318,7 @@
     ScrollTrigger.config({
       autoRefreshEvents: "DOMContentLoaded,load,resize"
     });
-    
+
     gsap.utils.toArray('section, .product-card').forEach((el, i) => {
       gsap.from(el, {
         scrollTrigger: {
@@ -341,17 +370,17 @@
       });
     });
 
-  new Swiper('.mySwiper', {
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    }
-  });
+    new Swiper('.mySwiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
 
     particlesJS("particles-js", {
       "particles": {
@@ -461,32 +490,84 @@
       });
     });
 
-//  Basic From validaion
-document.getElementById("enquiryForm").addEventListener("submit", function (e) {
-  const name = this.name.value.trim();
-  const email = this.email.value.trim();
-  const message = this.message.value.trim();
+    //  Basic From validaion
+    document.getElementById("enquiryForm").addEventListener("submit", function (e) {
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+      if (!name || !email || !message) {
+        alert("Please fill out all fields.");
+        e.preventDefault();
+      }
+    });
 
-  if (!name || !email || !message) {
-    alert("Please fill out all fields.");
-    e.preventDefault();
-  }
-});
+    // whatsapp funtion
+    (function () {
+      var options = {
+        whatsapp: "+919979959364", // Replace with your number
+        call_to_action: "Message us",
+        position: "right",
+        button_color: "#00ff5e",
+        pre_filled_message: "Hi! I'm interested in your acrylic products.",
+      };
+      var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
 
-// whatsapp funtion
-  (function () {
-    var options = {
-      whatsapp: "+919979959364", // Replace with your number
-      call_to_action: "Message us",
-      position: "right",
-      button_color: "#00ff5e",
-      pre_filled_message: "Hi! I'm interested in your acrylic products.",
-    };
-    var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-    s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-  })();
+    //Function for Number Counting
+
+    const counters = document.querySelectorAll(".count");
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      let hasAnimated = false;
+
+      ScrollTrigger.create({
+        trigger: counter,
+        start: "top 85%",
+        onEnter: () => {
+          if (!hasAnimated) {
+            animateCounter(counter, target, 2000); // 2 sec duration
+            hasAnimated = true;
+          }
+        }
+      });
+    });
+
+    function animateCounter(element, target, duration) {
+      const start = 0;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(progress * target);
+        element.textContent = value;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = target;
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+  document.querySelectorAll(".bar-fill").forEach(bar => {
+    const width = bar.getAttribute("data-progress");
+    ScrollTrigger.create({
+      trigger: bar,
+      start: "top 85%",
+      onEnter: () => {
+        bar.style.width = width + "%";
+      }
+    });
+  });
+
+
 
   </script>
 

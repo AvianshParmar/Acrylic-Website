@@ -122,7 +122,8 @@ section {
   /* padding:  0rem 0rem 4rem 4rem; */
   padding:  5rem 0rem 0rem 0rem;
   position: relative;
-
+scroll-snap-align: start;
+  scroll-snap-stop: always;
   z-index: 1;
   /* height: 100vh; */
 }
@@ -551,7 +552,141 @@ h2.section-title {
   color: white;
   box-shadow: 0 6px 20px rgba(0, 255, 94, 0.5);
 }
+/* New number increase Section */
+.stats-section {
+  padding: 3rem 2rem;
+  text-align: center;
+  /* border-radius: 16px; */
+  position: relative;
+  z-index: 1;
+  color: #fff;
 
+  /* ✨ Mirror / glass style */
+background: linear-gradient(300deg, rgba(0, 217, 255, 0.08), rgba(255, 255, 255, 0.1), rgba(0, 255, 94, 0.06));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  margin-top: 5rem;
+
+  /* ✨ Animated Gradient Background Overlay */
+  animation: animatedMirrorGradient 2s ease-in-out infinite alternate;
+  background-size: 400% 400%;
+  background-blend-mode: screen;
+}
+
+
+@keyframes animatedMirrorGradient {
+  0% {
+    background: linear-gradient(240deg, rgba(255, 255, 255, 0.05), rgba(0, 217, 255, 0.12), rgba(0, 255, 94, 0.1));
+  }
+  50% {
+    background: linear-gradient(240deg, rgba(255, 255, 255, 0.05), rgba(0, 217, 255, 0.12), rgba(0, 255, 94, 0.1));
+  }
+  100% {
+    background: linear-gradient(240deg, rgba(255, 255, 255, 0.05), rgba(0, 217, 255, 0.12), rgba(0, 255, 94, 0.1));
+  }
+}
+
+
+.stats-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* border-radius: 16px; */
+  background: linear-gradient(45deg, rgba(255,255,255,0.12), rgba(0,0,0,0.02));
+  z-index: -1;
+  pointer-events: none;
+}
+  
+.stats-section::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 70%);
+  transform: rotateZ(20deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#stats {
+  background: radial-gradient(circle at center, #121212 0%, #0a0a0a 100%);
+}
+
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 15px;
+  min-width: 180px;
+  max-width: 240px;
+  flex: 1;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 94, 0.2);
+      box-shadow: 0 0 10px rgb(0 255 94 / 8%), 0 0 25px rgb(25 255 0 / 0%);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 94, 0.4);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card h3 {
+  font-size: 2.5rem;
+  color: #00ff5e;
+  text-shadow: 0px 0px 6px #00ff5ea8;
+  margin-bottom: 0.3rem;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .stats-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.plus-sign {
+  color: #00ff5e;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-left: 4px;
+}
+
+
+/* Testimonial Section */
 .testimonial-card {
   font-style: italic;
   color: #bbb;
@@ -689,7 +824,7 @@ footer {
 .input-icon-group textarea {
   background: transparent;
   border: none;
-  color: white;
+  color: black;
   flex: 1;
   font-size: 1rem;
   outline: none;
@@ -897,6 +1032,7 @@ footer {
 max-width: 400px;
   margin: auto;
   padding: 1rem 0;
+  height: 24rem;
 }
 
 .swiper-slide {
