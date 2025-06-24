@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trophy Customizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="css/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapiys.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+body {
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      color: white;
+      /* display: flex; */
+      height: 100vh;
+      /* overflow: hidden; */
+      /* flex-direction: row; Default for desktop */
+    }
+    .flex-main-div{
+      display: flex;
+      flex-direction: row;
+    }
+    /* Controls Panel */
+    .controls {
+          width: 30%;
+    min-width: 280px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-right: 2px solid #00ff5e33;
+    overflow-y: auto;
+    display: flex
+;
+    flex-direction: column;
+    gap: 10px; /* Spacing between control elements */
+    }
+
+    .controls h2 {
+      color: #00ff5e;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    .controls label {
+        color: #bbb;
+        font-size: 0.9rem;
+        display: block;
+        /* margin-bottom: 0.2rem; */
+    }
+
+    /* Styles for all input types (text, file, number, color) and buttons */
+    .controls input:not([type="range"]),
+    .controls button,
+    .controls select {
+      width: 100%;
+      padding: 10px 12px;
+      background: #111;
+      color: white;
+      border: 1px solid #00ff5e55;
+      border-radius: 8px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      font-size: 1rem;
+    }
+
+    /* Specific styles for number inputs (font size) */
+    .controls input[type="number"] {
+        /* Remove spin buttons for better custom styling */
+        -moz-appearance: textfield;
+    }
+    .controls input[type="number"]::-webkit-outer-spin-button,
+    .controls input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Styles for range inputs (image scale, font size slider, rotation slider) */
+    .controls input[type="range"] {
+      height: 25px;
+      cursor: ew-resize;
+      background: #00ff5e22;
+      box-shadow: inset 0 0 5px rgba(0, 255, 94, 0.2);
+      /* margin-top: 0.5rem; Add some space above the slider */
+    }
+
+    .controls input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #00ff5e;
+      cursor: grab;
+      margin-top: -2px; /* Center thumb vertically */
+      box-shadow: 0 0 8px rgba(0, 255, 94, 0.5);
+      transition: background 0.3s ease;
+    }
+
+    .controls input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #00ff5e;
+      cursor: grab;
+      box-shadow: 0 0 8px rgba(0, 255, 94, 0.5);
+      transition: background 0.3s ease;
+    }
+
+    .controls input[type="range"]::-webkit-slider-thumb:active,
+    .controls input[type="range"]::-moz-range-thumb:active {
+        cursor: grabbing;
+    }
+
+    input[type="color"] {
+        padding: 5px; /* Adjust padding for color input */
+        height: 45px;
+    }
+
+    .controls button {
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(0, 255, 94, 0.2);
+    }
+
+    .controls button:hover {
+      background: #00ff5e;
+      color: #111;
+      transform: translateY(-2px);
+    }
+
+    .controls button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 255, 94, 0.3);
+    }
+
+    #downloadBtn {
+      background: linear-gradient(135deg, #00ff5e, #00cc44);
+      color: #0a0a0a;
+      border: none;
+    }
+
+    #resetBtn {
+        background: linear-gradient(135deg, #ff4444, #cc0000);
+        color: white;
+        border: none;
+    }
+    #resetBtn:hover {
+        background: #cc0000;
+        color: white;
+    }
+
+    .keyboard-hint {
+        font-size: 0.85rem;
+        color: #888;
+        text-align: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px dashed #ffffff1a;
+    }
+
+    /* Canvas Area */
+    .canvas-wrapper {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      background: radial-gradient(#0a0a0a, #111);
+      overflow: hidden;
+    }
+
+    #custom-area {
+    width: 700px;
+    height: 650px; /* Fixed height for trophy background */
+      /* background: url('images/trophy3.jpg') no-repeat center/contain; Placeholder trophy image */
+      position: relative;
+      overflow: hidden; /* Crucial to contain elements within the trophy shape */
+      border-radius: 10px;
+    
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: #0a0a0a;
+
+    }
+
+    /* Resizable Elements (Text and Images) */
+    .resizable {
+      position: absolute;
+      user-select: none;
+      touch-action: none; /* Prevents default browser actions like pinch-zoom on touch devices */
+      z-index: 10; /* Ensures elements are above the trophy background */
+      /* Base styles for added elements */
+      display: flex; /* For centering content within the element */
+      align-items: center;
+      justify-content: center;
+      box-sizing: content-box; /* Important for resize behavior with padding/border */
+      transform-origin: center center; /* Ensures rotation is around the center */
+    }
+
+    /* Active State (Border and Delete Button Visibility) */
+    .resizable.active {
+      outline: 2px solid #00ff5e; /* Solid border for clearer selection */
+      outline-offset: 4px; /* Space between element and border */
+      box-shadow: 0 0 15px rgba(0, 255, 94, 0.6); /* Glow effect when active */
+      z-index: 20; /* Bring active element to front */
+    }
+
+    /* Delete Button */
+    .resizable .remove {
+      position: absolute;
+      /* Adjusted to be outside the outline by accounting for the 4px offset */
+      top: calc(-12px - 4px); /* -12px is button margin, -4px for outline offset */
+      right: calc(-12px - 4px); /* Same for right */
+      background: #ff4444;
+      color: white;
+      /* border: 2px solid #0a0a0a; Added border to make it distinct */
+      border-radius: 50%;
+      font-size: 14px; 
+      width: 24px; 
+      height: 24px; 
+      line-height: 20px; /* Adjust line-height to vertically center the '×' */
+      text-align: center;
+      cursor: pointer;
+      z-index: 30; /* Always on top */
+      display: none; /* Hidden by default */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
+    }
+
+    .resizable.active .remove {
+        display: flex; /* Use flex to ensure '×' is truly centered */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .resizable .remove:hover {
+        background: #cc0000;
+        transform: scale(1.1);
+        border-color: #cc0000; /* Change border color on hover */
+    }
+
+    .resizable .remove:active {
+        transform: scale(0.95);
+    }
+
+    /* Specific styles for text elements */
+    .custom-text {
+        font-weight: 600;
+        text-align: center;
+        padding: 5px 10px; /* Padding for text */
+        min-width: 50px;
+        min-height: 20px;
+        /* Ensure text ellipsis works even if overflow is not hidden on parent */
+        overflow: visible; 
+        white-space: nowrap; 
+        text-overflow: ellipsis; 
+    }
+
+    /* Specific styles for image elements */
+    .image-element img {
+        display: block; /* Remove extra space below image */
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensure image fits within its container */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      .controls { width: 100%; height: auto; border-right: none; border-bottom: 2px solid #00ff5e33; padding-bottom: 1rem; }
+      .canvas-wrapper { height: 100%; }
+      #custom-area { width: 90%; max-width: 400px; height: 450px; } /* Adjust size for mobile */
+    }
+    @media screen and (max-width: 1024px) {
+  body {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+
+  .controls {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #00ff5e33;
+    padding: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .canvas-wrapper {
+    width: 100%;
+    padding: 1rem 0;
+  }
+
+  #custom-area {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-width: 350px;
+    background-size: contain;
+    margin: 0 auto;
+  }
+
+  .controls input,
+  .controls select,
+  .controls button {
+    font-size: 0.95rem;
+    padding: 8px 10px;
+  }
+
+  .controls h2 {
+    font-size: 1.5rem;
+  }
+
+  .keyboard-hint {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #custom-area {
+    width: 95%;
+    max-width: 300px;
+  }
+
+  .controls {
+    padding: 1rem;
+  }
+
+  .controls label {
+    font-size: 0.85rem;
+  }
+
+  .controls h2 {
+    font-size: 1.3rem;
+  }
+
+  .controls input,
+  .controls select,
+  .controls button {
+    font-size: 0.85rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header class="glass-navbar">
+    <div class="logo">
+      <a href="index.html"><img src="images/LOGO.png" alt="Mukesh Enterprise Logo"></a>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav>
+      <ul id="nav-list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#aboutus">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<div class="flex-main-div">
+  <div class="controls">
+    <h2>Customize Trophy</h2>
+
+    <label for="logoUpload">Upload Logo:</label>
+    <input type="file" id="logoUpload" accept="image/*" />
+    <label for="imageScaleRange">Image Scale: <span id="imageScaleValue">100</span>%</label>
+    <input type="range" id="imageScaleRange" min="1" max="300" value="100" />
+
+    <label for="textInput">Enter Text:</label>
+    <input type="text" id="textInput" placeholder="Enter your text" value="Your Text Here" />
+
+    <label for="colorPicker">Text Color:</label>
+    <input type="color" id="colorPicker" value="#00ff5e" />
+
+    <label for="fontSizeRange">Font Size: <span id="fontSizeValue">24</span>px</label>
+    <input type="range" id="fontSizeRange" min="12" max="72" value="24" />
+    <input type="number" id="fontSizeNumber" min="12" max="72" value="24" />
+
+    <!-- New Rotation Slider -->
+    <label for="rotationRange">Rotation: <span id="rotationValue">0</span>°</label>
+    <input type="range" id="rotationRange" min="-180" max="180" value="0" />
+
+
+    <button onclick="addText()">Add Text</button>
+    <button id="resetBtn">Reset All</button>
+    <button id="downloadBtn">Download Trophy</button>
+
+    <div class="keyboard-hint">
+        Hint: Select an object and use your <br>keyboard arrow keys to move it!
+        <br>Press the 'Delete' key to remove a selected object.
+    </div>
+  </div>
+
+  <div class="canvas-wrapper">
+    <div id="custom-area">
+      <img id="baseImage" src="images/default-trophy.png" alt="Trophy Image" /> 
+    </div>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    const customArea = document.getElementById('custom-area');
+    const logoUpload = document.getElementById('logoUpload');
+    const textInput = document.getElementById('textInput');
+    const colorPicker = document.getElementById('colorPicker');
+    const fontSizeRange = document.getElementById('fontSizeRange');
+    const fontSizeNumber = document.getElementById('fontSizeNumber');
+    const fontSizeValueSpan = document.getElementById('fontSizeValue');
+    const resetBtn = document.getElementById('resetBtn');
+    const imageScaleRange = document.getElementById('imageScaleRange');
+    const imageScaleValueSpan = document.getElementById('imageScaleValue');
+    const rotationRange = document.getElementById('rotationRange');
+    const rotationValueSpan = document.getElementById('rotationValue');
+
+    let currentTarget = null;
+
+    function setActive(el) {
+        document.querySelectorAll('.resizable').forEach(e => {
+            e.classList.remove("active");
+            const removeBtn = e.querySelector('.remove');
+            if (removeBtn) removeBtn.style.display = 'none';
+        });
+
+        el.classList.add("active");
+        currentTarget = el;
+
+        const removeBtn = el.querySelector('.remove');
+        if (removeBtn) removeBtn.style.display = 'flex'; // Use flex for centering the '×'
+
+        if (el.classList.contains("custom-text")) {
+            colorPicker.value = rgbToHex(el.style.color);
+            fontSizeRange.value = parseInt(el.style.fontSize);
+            fontSizeNumber.value = parseInt(el.style.fontSize);
+            fontSizeValueSpan.textContent = fontSizeNumber.value;
+            textInput.value = el.textContent.trim();
+            
+            rotationRange.value = parseFloat(el.dataset.rotation) || 0;
+            rotationValueSpan.textContent = rotationRange.value;
+
+            imageScaleRange.value = "100";
+            imageScaleValueSpan.textContent = "100";
+        } else if (el.classList.contains("image-element")) {
+            const currentScale = parseFloat(el.getAttribute('data-current-scale')) || 100;
+            imageScaleRange.value = currentScale;
+            imageScaleValueSpan.textContent = currentScale;
+            
+            rotationRange.value = parseFloat(el.dataset.rotation) || 0;
+            rotationValueSpan.textContent = rotationRange.value;
+
+            textInput.value = "";
+            colorPicker.value = "#00ff5e";
+            fontSizeRange.value = "24";
+            fontSizeNumber.value = "24";
+            fontSizeValueSpan.textContent = "24";
+        }
+    }
+
+    function rgbToHex(rgb) {
+        if (!rgb || rgb.startsWith('#')) return rgb;
+
+        const result = rgb.match(/\d+/g);
+        if (!result || result.length < 3) return "#000000";
+
+        return "#" + result.map(x => {
+            const hex = (+x).toString(16);
+            return hex.length === 1 ? "0" + hex : hex;
+        }).join('');
+    }
+
+    logoUpload.addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'resizable image-element';
+        
+        const img = document.createElement('img');
+        img.src = reader.result;
+        img.draggable = false;
+
+        img.onload = () => {
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            const initialHeight = 120;
+            const initialWidth = initialHeight * aspectRatio;
+
+            imgContainer.style.width = `${initialWidth}px`;
+            imgContainer.style.height = `${initialHeight}px`;
+
+            imgContainer.setAttribute('data-original-width', initialWidth);
+            imgContainer.setAttribute('data-original-height', initialHeight);
+            imgContainer.setAttribute('data-current-scale', 100);
+            
+            imageScaleRange.value = 100;
+            imageScaleValueSpan.textContent = 100;
+            rotationRange.value = 0;
+            rotationValueSpan.textContent = 0;
+        };
+        imgContainer.appendChild(img);
+
+        addControls(imgContainer);
+        customArea.appendChild(imgContainer);
+        makeInteractable(imgContainer);
+        setActive(imgContainer);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function addText() {
+      if (!textInput.value.trim()) {
+        alert("Please enter some text!");
+        return;
+      }
+      const text = document.createElement('div');
+      text.className = 'resizable custom-text';
+      text.textContent = textInput.value;
+      text.style.color = colorPicker.value;
+      text.style.fontSize = fontSizeRange.value + 'px';
+      text.style.fontWeight = '600';
+      text.style.textAlign = 'center';
+      text.style.minWidth = '80px';
+      text.style.minHeight = '30px';
+      text.style.lineHeight = '1.2';
+
+      addControls(text);
+      customArea.appendChild(text);
+      makeInteractable(text);
+      setActive(text);
+    }
+
+    function addControls(el) {
+      const areaRect = customArea.getBoundingClientRect();
+      const elWidth = el.clientWidth || 100;
+      const elHeight = el.clientHeight || 100;
+      
+      el.style.left = `${(areaRect.width / 2) - (elWidth / 2)}px`;
+      el.style.top = `${(areaRect.height / 2) - (elHeight / 2)}px`;
+
+      el.style.position = "absolute";
+      el.setAttribute('data-x', 0);
+      el.setAttribute('data-y', 0);
+      el.setAttribute('data-rotation', 0);
+
+      const removeBtn = document.createElement("button");
+      removeBtn.className = "remove";
+      removeBtn.innerHTML = "×";
+      removeBtn.onclick = (e) => {
+        e.stopPropagation();
+        el.remove();
+        currentTarget = null;
+        document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
+        document.querySelectorAll('.resizable').forEach(item => item.classList.remove('active'));
+      };
+      el.appendChild(removeBtn);
+
+      el.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setActive(el);
+      });
+    }
+
+    colorPicker.addEventListener("input", () => {
+      if (currentTarget && currentTarget.classList.contains("custom-text")) {
+        currentTarget.style.color = colorPicker.value;
+      }
+    });
+
+    fontSizeRange.addEventListener("input", () => {
+      const value = parseInt(fontSizeRange.value);
+      fontSizeValueSpan.textContent = value;
+      fontSizeNumber.value = value;
+
+      if (currentTarget && currentTarget.classList.contains("custom-text")) {
+        currentTarget.style.fontSize = value + 'px';
+      }
+    });
+
+    fontSizeNumber.addEventListener("input", () => {
+      let value = parseInt(fontSizeNumber.value);
+      const min = parseInt(fontSizeNumber.min);
+      const max = parseInt(fontSizeNumber.max);
+
+      if (isNaN(value)) {
+        value = min;
+      } else if (value < min) {
+        value = min;
+      } else if (value > max) {
+        value = max;
+      }
+      
+      fontSizeNumber.value = value;
+      fontSizeValueSpan.textContent = value;
+      fontSizeRange.value = value;
+
+      if (currentTarget && currentTarget.classList.contains("custom-text")) {
+        currentTarget.style.fontSize = value + 'px';
+      }
+    });
+
+    textInput.addEventListener("input", () => {
+        if (currentTarget && currentTarget.classList.contains("custom-text")) {
+            currentTarget.textContent = textInput.value;
+        }
+    });
+
+    imageScaleRange.addEventListener('input', () => {
+        imageScaleValueSpan.textContent = imageScaleRange.value;
+        if (currentTarget && currentTarget.classList.contains("image-element")) {
+            const originalWidth = parseFloat(currentTarget.getAttribute('data-original-width'));
+            const originalHeight = parseFloat(currentTarget.getAttribute('data-original-height'));
+            const scaleValue = parseFloat(imageScaleRange.value) / 100;
+
+            if (!isNaN(originalWidth) && !isNaN(originalHeight) && !isNaN(scaleValue) && scaleValue > 0) {
+                const newWidth = originalWidth * scaleValue;
+                const newHeight = originalHeight * scaleValue;
+
+                currentTarget.style.width = `${newWidth}px`;
+                currentTarget.style.height = `${newHeight}px`;
+                currentTarget.setAttribute('data-current-scale', imageScaleRange.value);
+            }
+        }
+    });
+
+    rotationRange.addEventListener('input', () => {
+        const value = parseInt(rotationRange.value);
+        rotationValueSpan.textContent = value;
+        if (currentTarget) {
+            currentTarget.dataset.rotation = value;
+            const x = parseFloat(currentTarget.getAttribute('data-x')) || 0;
+            const y = parseFloat(currentTarget.getAttribute('data-y')) || 0;
+            currentTarget.style.transform = `translate(${x}px, ${y}px) rotate(${value}deg)`;
+        }
+    });
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".resizable") && !e.target.closest(".controls")) {
+        document.querySelectorAll('.resizable').forEach(el => el.classList.remove("active"));
+        document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
+        currentTarget = null;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!currentTarget) return;
+
+        if (e.key === 'Delete' || e.key === 'Backspace') {
+            e.preventDefault();
+            currentTarget.remove();
+            currentTarget = null;
+            document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
+            document.querySelectorAll('.resizable').forEach(item => item.classList.remove('active'));
+            return;
+        }
+
+        const step = 5;
+        let x = (parseFloat(currentTarget.getAttribute('data-x')) || 0);
+        let y = (parseFloat(currentTarget.getAttribute('data-y')) || 0);
+        const rotation = (parseFloat(currentTarget.dataset.rotation) || 0);
+
+        let moved = false;
+
+        switch (e.key) {
+            case 'ArrowUp':
+                y -= step;
+                moved = true;
+                break;
+            case 'ArrowDown':
+                y += step;
+                moved = true;
+                break;
+            case 'ArrowLeft':
+                x -= step;
+                moved = true;
+                break;
+            case 'ArrowRight':
+                x += step;
+                moved = true;
+                break;
+        }
+
+        if (moved) {
+            e.preventDefault();
+            currentTarget.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+            currentTarget.setAttribute('data-x', x);
+            currentTarget.setAttribute('data-y', y);
+        }
+    });
+
+    function makeInteractable(el) {
+      interact(el)
+        .draggable({
+          listeners: {
+            start(event) {
+                setActive(event.target);
+            },
+            move(event) {
+              const target = event.target;
+              const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+              const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+              target.style.transform = `translate(${x}px, ${y}px) rotate(${target.dataset.rotation || 0}deg)`;
+
+              target.setAttribute('data-x', x);
+              target.setAttribute('data-y', y);
+            }
+          },
+          modifiers: [
+            interact.modifiers.restrictRect({
+              restriction: 'parent',
+              endOnly: true
+            })
+          ]
+        })
+        .gesturable({
+          listeners: {
+            start(event) {
+                setActive(event.target);
+            },
+            move(event) {
+              const target = event.target;
+              const currentAngle = parseFloat(target.dataset.rotation) || 0;
+              const newAngle = currentAngle + event.da;
+              target.dataset.rotation = newAngle;
+
+              const x = parseFloat(target.getAttribute('data-x')) || 0;
+              const y = parseFloat(target.getAttribute('data-y')) || 0;
+
+              target.style.transform = `translate(${x}px, ${y}px) rotate(${newAngle}deg)`;
+              rotationRange.value = newAngle;
+              rotationValueSpan.textContent = Math.round(newAngle);
+            }
+          }
+        });
+    }
+
+    resetBtn.addEventListener('click', () => {
+        while (customArea.firstChild) {
+            customArea.removeChild(customArea.firstChild);
+        }
+        currentTarget = null;
+        document.querySelectorAll('.resizable').forEach(e => e.classList.remove('active'));
+        document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
+
+        textInput.value = "Your Text Here";
+        colorPicker.value = "#00ff5e";
+        fontSizeRange.value = "24";
+        fontSizeNumber.value = "24";
+        fontSizeValueSpan.textContent = "24";
+        logoUpload.value = "";
+        imageScaleRange.value = "100";
+        imageScaleValueSpan.textContent = "100";
+        rotationRange.value = "0";
+        rotationValueSpan.textContent = "0";
+    });
+
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const elements = document.querySelectorAll(".resizable");
+
+      elements.forEach(e => {
+          e.classList.remove("active");
+          const removeBtn = e.querySelector('.remove');
+          if (removeBtn) removeBtn.style.display = 'none';
+      });
+
+      const clone = customArea.cloneNode(true);
+      clone.querySelectorAll('.remove').forEach(btn => btn.remove());
+      clone.style.boxShadow = 'none';
+
+      clone.querySelectorAll('.resizable').forEach(clonedEl => {
+          const originalEl = Array.from(elements).find(o =>
+              o.getAttribute('data-x') === clonedEl.getAttribute('data-x') &&
+              o.getAttribute('data-y') === clonedEl.getAttribute('data-y') &&
+              o.getAttribute('data-rotation') === clonedEl.getAttribute('data-rotation')
+          );
+
+          if (originalEl) {
+              clonedEl.style.transform = originalEl.style.transform;
+              clonedEl.style.width = originalEl.style.width;
+              clonedEl.style.height = originalEl.style.height;
+
+              if (originalEl.classList.contains('custom-text')) {
+                  clonedEl.style.color = originalEl.style.color;
+                  clonedEl.style.fontSize = originalEl.style.fontSize;
+              }
+          }
+      });
+
+      document.body.appendChild(clone);
+      clone.style.position = 'absolute';
+      clone.style.left = '-9999px';
+      clone.style.top = '-9999px';
+
+      html2canvas(clone, {
+          backgroundColor: null,
+          useCORS: true,
+          scale: 2
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "trophy-customized.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+
+        if (currentTarget) {
+            setActive(currentTarget);
+        } else {
+            document.querySelectorAll('.resizable').forEach(e => {
+                e.classList.remove("active");
+                const removeBtn = e.querySelector('.remove');
+                if (removeBtn) removeBtn.style.display = 'none';
+            });
+        }
+        clone.remove();
+      }).catch(error => {
+          console.error("Error generating image:", error);
+          alert("Error generating image. Please try again. Ensure your trophy image is hosted correctly or loaded from the same origin.");
+
+          if (currentTarget) {
+              setActive(currentTarget);
+          } else {
+              document.querySelectorAll('.resizable').forEach(e => {
+                  e.classList.remove("active");
+                  const removeBtn = e.querySelector('.remove');
+                  if (removeBtn) removeBtn.style.display = 'none';
+              });
+          }
+          clone.remove();
+      });
+    });
+
+    fontSizeValueSpan.textContent = fontSizeRange.value;
+    fontSizeNumber.value = fontSizeRange.value;
+    imageScaleValueSpan.textContent = imageScaleRange.value;
+    rotationValueSpan.textContent = rotationRange.value;
+  </script>
+ <script>
+    const params = new URLSearchParams(window.location.search);
+    const imgPath = params.get("img");
+    const baseImage = document.getElementById("baseImage");
+
+    if (imgPath) {
+      baseImage.src = imgPath;
+    } else {
+      baseImage.src = "images/default-trophy.png";
+    }
+  </script>
+
+  
+
+</body>
+</html>
