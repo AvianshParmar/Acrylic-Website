@@ -4,242 +4,91 @@
   <meta charset="UTF-8" />
   <title>Trophy Customizer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="css/main.css" rel="stylesheet">
-  <link href="https://fonts.googleapiys.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
   <style>
-    /* Base styles */
+    /* Base styles - Minimal CSS, letting Tailwind handle most */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-body {
+    body {
       font-family: 'Poppins', sans-serif;
       background: #0a0a0a;
       color: white;
-      /* display: flex; */
-      height: 100vh;
-      /* overflow: hidden; */
-      /* flex-direction: row; Default for desktop */
-    }
-    .flex-main-div{
-      display: flex;
-      flex-direction: row;
-    }
-    /* Controls Panel */
-    .controls {
-          width: 30%;
-    min-width: 280px;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-right: 2px solid #00ff5e33;
-    overflow-y: auto;
-    display: flex
-;
-    flex-direction: column;
-    gap: 10px; /* Spacing between control elements */
     }
 
-    .controls h2 {
-      color: #00ff5e;
-      margin-bottom: 0.5rem;
-      text-align: center;
-      font-size: 1.8rem;
+    /* Custom scrollbar for controls */
+    .controls::-webkit-scrollbar {
+        width: 8px;
+    }
+    .controls::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    .controls::-webkit-scrollbar-thumb {
+        background: #00ff5e;
+        border-radius: 10px;
+    }
+    .controls::-webkit-scrollbar-thumb:hover {
+        background: #00cc44;
     }
 
-    .controls label {
-        color: #bbb;
-        font-size: 0.9rem;
-        display: block;
-        /* margin-bottom: 0.2rem; */
-    }
 
-    /* Styles for all input types (text, file, number, color) and buttons */
-    .controls input:not([type="range"]),
-    .controls button,
-    .controls select {
-      width: 100%;
-      padding: 10px 12px;
-      background: #111;
-      color: white;
-      border: 1px solid #00ff5e55;
-      border-radius: 8px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      font-size: 1rem;
-    }
-
-    /* Specific styles for number inputs (font size) */
-    .controls input[type="number"] {
-        /* Remove spin buttons for better custom styling */
-        -moz-appearance: textfield;
-    }
-    .controls input[type="number"]::-webkit-outer-spin-button,
-    .controls input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Styles for range inputs (image scale, font size slider, rotation slider) */
-    .controls input[type="range"] {
-      height: 25px;
-      cursor: ew-resize;
-      background: #00ff5e22;
-      box-shadow: inset 0 0 5px rgba(0, 255, 94, 0.2);
-      /* margin-top: 0.5rem; Add some space above the slider */
-    }
-
-    .controls input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #00ff5e;
-      cursor: grab;
-      margin-top: -2px; /* Center thumb vertically */
-      box-shadow: 0 0 8px rgba(0, 255, 94, 0.5);
-      transition: background 0.3s ease;
-    }
-
-    .controls input[type="range"]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #00ff5e;
-      cursor: grab;
-      box-shadow: 0 0 8px rgba(0, 255, 94, 0.5);
-      transition: background 0.3s ease;
-    }
-
-    .controls input[type="range"]::-webkit-slider-thumb:active,
-    .controls input[type="range"]::-moz-range-thumb:active {
-        cursor: grabbing;
-    }
-
-    input[type="color"] {
-        padding: 5px; /* Adjust padding for color input */
-        height: 45px;
-    }
-
-    .controls button {
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s, transform 0.2s;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 10px rgba(0, 255, 94, 0.2);
-    }
-
-    .controls button:hover {
-      background: #00ff5e;
-      color: #111;
-      transform: translateY(-2px);
-    }
-
-    .controls button:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 5px rgba(0, 255, 94, 0.3);
-    }
-
-    #downloadBtn {
-      background: linear-gradient(135deg, #00ff5e, #00cc44);
-      color: #0a0a0a;
-      border: none;
-    }
-
-    #resetBtn {
-        background: linear-gradient(135deg, #ff4444, #cc0000);
-        color: white;
-        border: none;
-    }
-    #resetBtn:hover {
-        background: #cc0000;
-        color: white;
-    }
-
-    .keyboard-hint {
-        font-size: 0.85rem;
-        color: #888;
-        text-align: center;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px dashed #ffffff1a;
-    }
-
-    /* Canvas Area */
-    .canvas-wrapper {
-      flex: 1;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      margin-top: 2rem;
-      background: radial-gradient(#0a0a0a, #111);
-      overflow: hidden;
-    }
-
+    /* Canvas Area - Custom styles because Tailwind cannot set background-image directly */
     #custom-area {
-    width: 700px;
-    height: 650px; /* Fixed height for trophy background */
-      /* background: url('images/trophy3.jpg') no-repeat center/contain; Placeholder trophy image */
-      position: relative;
-      overflow: hidden; /* Crucial to contain elements within the trophy shape */
+      /* Background will be set by JS dynamically */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      box-shadow: 0 0 30px rgba(0, 255, 94, 0.4), inset 0 0 10px rgba(0, 255, 94, 0.1);
       border-radius: 10px;
-    
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-color: #0a0a0a;
-
     }
 
-    /* Resizable Elements (Text and Images) */
+    /* Resizable Elements (Text and Images) - Custom styles for active state and delete button */
     .resizable {
       position: absolute;
       user-select: none;
-      touch-action: none; /* Prevents default browser actions like pinch-zoom on touch devices */
-      z-index: 10; /* Ensures elements are above the trophy background */
-      /* Base styles for added elements */
-      display: flex; /* For centering content within the element */
+      touch-action: none;
+      z-index: 10;
+      display: flex;
       align-items: center;
       justify-content: center;
-      box-sizing: content-box; /* Important for resize behavior with padding/border */
-      transform-origin: center center; /* Ensures rotation is around the center */
+      box-sizing: content-box;
+      transform-origin: center center;
     }
 
-    /* Active State (Border and Delete Button Visibility) */
     .resizable.active {
-      outline: 2px solid #00ff5e; /* Solid border for clearer selection */
-      outline-offset: 4px; /* Space between element and border */
-      box-shadow: 0 0 15px rgba(0, 255, 94, 0.6); /* Glow effect when active */
-      z-index: 20; /* Bring active element to front */
+      outline: 2px solid #00ff5e;
+      outline-offset: 4px;
+      box-shadow: 0 0 15px rgba(0, 255, 94, 0.6);
+      z-index: 20;
     }
 
-    /* Delete Button */
     .resizable .remove {
       position: absolute;
-      /* Adjusted to be outside the outline by accounting for the 4px offset */
-      top: calc(-12px - 4px); /* -12px is button margin, -4px for outline offset */
-      right: calc(-12px - 4px); /* Same for right */
+      top: calc(-12px - 4px);
+      right: calc(-12px - 4px);
       background: #ff4444;
       color: white;
-      /* border: 2px solid #0a0a0a; Added border to make it distinct */
+      border: 2px solid #0a0a0a;
       border-radius: 50%;
-      font-size: 14px; 
-      width: 24px; 
-      height: 24px; 
-      line-height: 20px; /* Adjust line-height to vertically center the '×' */
+      font-size: 14px;
+      width: 24px;
+      height: 24px;
+      line-height: 20px;
       text-align: center;
       cursor: pointer;
-      z-index: 30; /* Always on top */
-      display: none; /* Hidden by default */
+      z-index: 30;
+      display: none;
       box-shadow: 0 2px 8px rgba(0,0,0,0.6);
       transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
     }
 
     .resizable.active .remove {
-        display: flex; /* Use flex to ensure '×' is truly centered */
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -247,171 +96,84 @@ body {
     .resizable .remove:hover {
         background: #cc0000;
         transform: scale(1.1);
-        border-color: #cc0000; /* Change border color on hover */
+        border-color: #cc0000;
     }
 
     .resizable .remove:active {
         transform: scale(0.95);
     }
 
-    /* Specific styles for text elements */
     .custom-text {
         font-weight: 600;
         text-align: center;
-        padding: 5px 10px; /* Padding for text */
+        padding: 5px 10px;
         min-width: 50px;
         min-height: 20px;
-        /* Ensure text ellipsis works even if overflow is not hidden on parent */
-        overflow: visible; 
+        overflow: hidden; 
         white-space: nowrap; 
         text-overflow: ellipsis; 
     }
 
-    /* Specific styles for image elements */
     .image-element img {
-        display: block; /* Remove extra space below image */
+        display: block;
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Ensure image fits within its container */
+        object-fit: contain;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      body { flex-direction: column; }
-      .controls { width: 100%; height: auto; border-right: none; border-bottom: 2px solid #00ff5e33; padding-bottom: 1rem; }
-      .canvas-wrapper { height: 100%; }
-      #custom-area { width: 90%; max-width: 400px; height: 450px; } /* Adjust size for mobile */
+    /* Trophy thumbnails */
+    .trophy-thumbnail {
+        @apply w-20 h-20 rounded-lg object-contain cursor-pointer border-2 border-transparent transition-all duration-200;
     }
-    @media screen and (max-width: 1024px) {
-  body {
-    flex-direction: column;
-    height: auto;
-    overflow: auto;
-  }
-
-  .controls {
-    width: 100%;
-    border-right: none;
-    border-bottom: 2px solid #00ff5e33;
-    padding: 1.5rem;
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-
-  .canvas-wrapper {
-    width: 100%;
-    padding: 1rem 0;
-  }
-
-  #custom-area {
-    width: 90%;
-    height: auto;
-    aspect-ratio: 4 / 5;
-    max-width: 350px;
-    background-size: contain;
-    margin: 0 auto;
-  }
-
-  .controls input,
-  .controls select,
-  .controls button {
-    font-size: 0.95rem;
-    padding: 8px 10px;
-  }
-
-  .controls h2 {
-    font-size: 1.5rem;
-  }
-
-  .keyboard-hint {
-    font-size: 0.8rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #custom-area {
-    width: 95%;
-    max-width: 300px;
-  }
-
-  .controls {
-    padding: 1rem;
-  }
-
-  .controls label {
-    font-size: 0.85rem;
-  }
-
-  .controls h2 {
-    font-size: 1.3rem;
-  }
-
-  .controls input,
-  .controls select,
-  .controls button {
-    font-size: 0.85rem;
-  }
-}
+    .trophy-thumbnail.selected-trophy {
+        @apply border-green-500 shadow-md shadow-green-500/50;
+    }
   </style>
 </head>
-<body>
-  <div id="particles-js"></div>
+<body class="flex flex-col md:flex-row h-screen overflow-hidden">
 
-  <header class="glass-navbar">
-    <div class="logo">
-      <a href="index.html"><img src="images/LOGO.png" alt="Mukesh Enterprise Logo"></a>
+  <div class="controls w-full md:w-1/3 min-w-[280px] p-8 bg-white/5 border-r-2 border-green-500/20 overflow-y-auto flex flex-col gap-4">
+    <h2 class="text-green-500 text-3xl font-semibold mb-4 text-center">Customize Trophy</h2>
+
+    <div class="mb-6">
+        <label class="block text-gray-300 text-sm font-medium mb-2">Select Trophy:</label>
+        <div id="trophy-selection" class="flex flex-wrap gap-4 justify-center">
+            <!-- Trophy thumbnails will be dynamically loaded here -->
+        </div>
     </div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav>
-      <ul id="nav-list">
-        <li><a href="#">Home</a></li>
-        <li><a href="#aboutus">About Us</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
-    </nav>
-  </header>
 
-<div class="flex-main-div">
-  <div class="controls">
-    <h2>Customize Trophy</h2>
+    <label for="logoUpload" class="block text-gray-300 text-sm font-medium mb-1">Upload Logo:</label>
+    <input type="file" id="logoUpload" accept="image/*" class="w-full p-2 bg-gray-900 text-white border border-green-500/50 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-green-500">
+    <label for="imageScaleRange" class="block text-gray-300 text-sm font-medium mb-1">Image Scale: <span id="imageScaleValue">100</span>%</label>
+    <input type="range" id="imageScaleRange" min="1" max="300" value="100" class="w-full h-6 bg-green-500/20 rounded-lg appearance-none cursor-ew-resize">
 
-    <label for="logoUpload">Upload Logo:</label>
-    <input type="file" id="logoUpload" accept="image/*" />
-    <label for="imageScaleRange">Image Scale: <span id="imageScaleValue">100</span>%</label>
-    <input type="range" id="imageScaleRange" min="1" max="300" value="100" />
+    <label for="textInput" class="block text-gray-300 text-sm font-medium mb-1">Enter Text:</label>
+    <input type="text" id="textInput" placeholder="Enter your text" value="Your Text Here" class="w-full p-2 bg-gray-900 text-white border border-green-500/50 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-green-500">
 
-    <label for="textInput">Enter Text:</label>
-    <input type="text" id="textInput" placeholder="Enter your text" value="Your Text Here" />
+    <label for="colorPicker" class="block text-gray-300 text-sm font-medium mb-1">Text Color:</label>
+    <input type="color" id="colorPicker" value="#00ff5e" class="w-full h-12 p-1 bg-gray-900 text-white border border-green-500/50 rounded-lg appearance-none">
 
-    <label for="colorPicker">Text Color:</label>
-    <input type="color" id="colorPicker" value="#00ff5e" />
+    <label for="fontSizeRange" class="block text-gray-300 text-sm font-medium mb-1">Font Size: <span id="fontSizeValue">24</span>px</label>
+    <input type="range" id="fontSizeRange" min="12" max="72" value="24" class="w-full h-6 bg-green-500/20 rounded-lg appearance-none cursor-ew-resize">
+    <input type="number" id="fontSizeNumber" min="12" max="72" value="24" class="w-full p-2 bg-gray-900 text-white border border-green-500/50 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-green-500">
 
-    <label for="fontSizeRange">Font Size: <span id="fontSizeValue">24</span>px</label>
-    <input type="range" id="fontSizeRange" min="12" max="72" value="24" />
-    <input type="number" id="fontSizeNumber" min="12" max="72" value="24" />
+    <label for="rotationRange" class="block text-gray-300 text-sm font-medium mb-1">Rotation: <span id="rotationValue">0</span>°</label>
+    <input type="range" id="rotationRange" min="-180" max="180" value="0" class="w-full h-6 bg-green-500/20 rounded-lg appearance-none cursor-ew-resize">
 
-    <!-- New Rotation Slider -->
-    <label for="rotationRange">Rotation: <span id="rotationValue">0</span>°</label>
-    <input type="range" id="rotationRange" min="-180" max="180" value="0" />
+    <button onclick="addText()" class="w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg shadow-lg transition-all duration-300">Add Text</button>
+    <button id="resetBtn" class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg shadow-lg transition-all duration-300">Reset All</button>
+    <button id="downloadBtn" class="w-full py-2 px-4 bg-gradient-to-br from-green-500 to-green-700 text-gray-900 font-bold rounded-lg shadow-lg transition-all duration-300">Download Trophy</button>
 
-
-    <button onclick="addText()">Add Text</button>
-    <button id="resetBtn">Reset All</button>
-    <button id="downloadBtn">Download Trophy</button>
-
-    <div class="keyboard-hint">
+    <div class="keyboard-hint text-xs text-gray-500 text-center mt-4 pt-4 border-t border-dashed border-gray-700">
         Hint: Select an object and use your <br>keyboard arrow keys to move it!
         <br>Press the 'Delete' key to remove a selected object.
     </div>
   </div>
 
-  <div class="canvas-wrapper">
-    <div id="custom-area">
-      <img id="baseImage" src="images/default-trophy.png" alt="Trophy Image" /> 
-    </div>
+  <div class="canvas-wrapper flex-1 relative flex justify-center items-center bg-gradient-to-br from-gray-900 to-gray-700 overflow-hidden">
+    <div id="custom-area" class="w-[400px] h-[500px] relative overflow-hidden"></div>
   </div>
-</div>
+
   <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script>
@@ -427,8 +189,20 @@ body {
     const imageScaleValueSpan = document.getElementById('imageScaleValue');
     const rotationRange = document.getElementById('rotationRange');
     const rotationValueSpan = document.getElementById('rotationValue');
+    const trophySelectionDiv = document.getElementById('trophy-selection');
 
     let currentTarget = null;
+
+    // --- Trophy Definitions ---
+    // IMPORTANT: Ensure these URLs match the image paths in your products.html
+    const trophies = [
+      { name: 'Classic Gold', url: 'images/trophy1.png' }, // Matches product card 1
+      { name: 'Silver Cup', url: 'images/trophy3.jpg' },  // Matches product card 2 (memento)
+      { name: 'Abstract Blue', url: 'https://placehold.co/400x500/4682B4/FFFFFF?text=Trophy+C' },
+      { name: 'Wooden Base', url: 'https://placehold.co/400x500/A0522D/FFFFFF?text=Trophy+D' }
+    ];
+
+    // --- Utility Functions ---
 
     function setActive(el) {
         document.querySelectorAll('.resizable').forEach(e => {
@@ -441,7 +215,7 @@ body {
         currentTarget = el;
 
         const removeBtn = el.querySelector('.remove');
-        if (removeBtn) removeBtn.style.display = 'flex'; // Use flex for centering the '×'
+        if (removeBtn) removeBtn.style.display = 'flex';
 
         if (el.classList.contains("custom-text")) {
             colorPicker.value = rgbToHex(el.style.color);
@@ -451,17 +225,22 @@ body {
             textInput.value = el.textContent.trim();
             
             rotationRange.value = parseFloat(el.dataset.rotation) || 0;
-            rotationValueSpan.textContent = rotationRange.value;
+            rotationValueSpan.textContent = Math.round(rotationRange.value);
 
-            imageScaleRange.value = "100";
-            imageScaleValueSpan.textContent = "100";
+            // Hide image-specific controls
+            imageScaleRange.classList.add('hidden');
+            document.querySelector('label[for="imageScaleRange"]').classList.add('hidden');
         } else if (el.classList.contains("image-element")) {
             const currentScale = parseFloat(el.getAttribute('data-current-scale')) || 100;
             imageScaleRange.value = currentScale;
             imageScaleValueSpan.textContent = currentScale;
             
             rotationRange.value = parseFloat(el.dataset.rotation) || 0;
-            rotationValueSpan.textContent = rotationRange.value;
+            rotationValueSpan.textContent = Math.round(rotationRange.value);
+
+            // Show image-specific controls
+            imageScaleRange.classList.remove('hidden');
+            document.querySelector('label[for="imageScaleRange"]').classList.remove('hidden');
 
             textInput.value = "";
             colorPicker.value = "#00ff5e";
@@ -471,17 +250,84 @@ body {
         }
     }
 
+    function deactivateAll() {
+        document.querySelectorAll('.resizable').forEach(e => {
+            e.classList.remove("active");
+            const removeBtn = e.querySelector('.remove');
+            if (removeBtn) removeBtn.style.display = 'none';
+        });
+        currentTarget = null;
+        imageScaleRange.classList.add('hidden');
+        document.querySelector('label[for="imageScaleRange"]').classList.add('hidden');
+    }
+
     function rgbToHex(rgb) {
         if (!rgb || rgb.startsWith('#')) return rgb;
-
         const result = rgb.match(/\d+/g);
         if (!result || result.length < 3) return "#000000";
-
         return "#" + result.map(x => {
             const hex = (+x).toString(16);
             return hex.length === 1 ? "0" + hex : hex;
         }).join('');
     }
+
+    // --- Trophy Selection ---
+    function loadTrophies() {
+        trophySelectionDiv.innerHTML = '';
+        trophies.forEach((trophy) => { // Removed index here as we'll handle initial selection in initializeTrophyBackground
+            const img = document.createElement('img');
+            img.src = trophy.url;
+            img.alt = trophy.name;
+            img.title = trophy.name;
+            img.classList.add('trophy-thumbnail');
+            img.addEventListener('click', () => {
+                selectTrophy(trophy.url, img);
+            });
+            trophySelectionDiv.appendChild(img);
+        });
+    }
+
+    function selectTrophy(imageUrl, clickedThumbnail) {
+        customArea.style.backgroundImage = `url('${imageUrl}')`;
+        document.querySelectorAll('.trophy-thumbnail').forEach(thumb => {
+            thumb.classList.remove('selected-trophy');
+        });
+        if (clickedThumbnail) { // Check if a thumbnail element was provided
+            clickedThumbnail.classList.add('selected-trophy');
+        }
+    }
+
+    // --- New: Function to initialize trophy background from URL parameter ---
+    function initializeTrophyBackgroundFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const imageUrlParam = urlParams.get('image'); // Get the image URL from the query parameter
+
+        if (imageUrlParam) {
+            // Set the background image of the custom-area using the URL parameter
+            customArea.style.backgroundImage = `url('${imageUrlParam}')`;
+
+            // Try to find and select the corresponding thumbnail
+            const matchingThumbnail = Array.from(trophySelectionDiv.children).find(thumb => 
+                thumb.src.includes(imageUrlParam) // Use includes for partial matching
+            );
+            if (matchingThumbnail) {
+                selectTrophy(imageUrlParam, matchingThumbnail); // Use selectTrophy to apply highlight
+            } else {
+                // If the URL image doesn't match a predefined thumbnail, ensure none are highlighted
+                document.querySelectorAll('.trophy-thumbnail').forEach(thumb => {
+                    thumb.classList.remove('selected-trophy');
+                });
+            }
+        } else {
+            // If no image parameter, default to the first trophy in the list
+            if (trophies.length > 0) {
+                selectTrophy(trophies[0].url, trophySelectionDiv.children[0]);
+            }
+        }
+    }
+
+
+    // --- Element Creation and Interaction Setup ---
 
     logoUpload.addEventListener('change', e => {
       const file = e.target.files[0];
@@ -564,9 +410,7 @@ body {
       removeBtn.onclick = (e) => {
         e.stopPropagation();
         el.remove();
-        currentTarget = null;
-        document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
-        document.querySelectorAll('.resizable').forEach(item => item.classList.remove('active'));
+        deactivateAll();
       };
       el.appendChild(removeBtn);
 
@@ -575,6 +419,8 @@ body {
         setActive(el);
       });
     }
+
+    // --- Control Panel Event Listeners (for selected object) ---
 
     colorPicker.addEventListener("input", () => {
       if (currentTarget && currentTarget.classList.contains("custom-text")) {
@@ -649,11 +495,11 @@ body {
         }
     });
 
+    // --- Global Click and Keyboard Handlers ---
+
     document.addEventListener("click", e => {
       if (!e.target.closest(".resizable") && !e.target.closest(".controls")) {
-        document.querySelectorAll('.resizable').forEach(el => el.classList.remove("active"));
-        document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
-        currentTarget = null;
+        deactivateAll();
       }
     });
 
@@ -663,9 +509,7 @@ body {
         if (e.key === 'Delete' || e.key === 'Backspace') {
             e.preventDefault();
             currentTarget.remove();
-            currentTarget = null;
-            document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
-            document.querySelectorAll('.resizable').forEach(item => item.classList.remove('active'));
+            deactivateAll();
             return;
         }
 
@@ -703,6 +547,7 @@ body {
         }
     });
 
+    // --- Interact.js Setup (Drag and Rotate Only) ---
     function makeInteractable(el) {
       interact(el)
         .draggable({
@@ -750,13 +595,12 @@ body {
         });
     }
 
+    // --- Reset Functionality ---
     resetBtn.addEventListener('click', () => {
         while (customArea.firstChild) {
             customArea.removeChild(customArea.firstChild);
         }
-        currentTarget = null;
-        document.querySelectorAll('.resizable').forEach(e => e.classList.remove('active'));
-        document.querySelectorAll('.remove').forEach(btn => btn.style.display = 'none');
+        deactivateAll();
 
         textInput.value = "Your Text Here";
         colorPicker.value = "#00ff5e";
@@ -770,6 +614,7 @@ body {
         rotationValueSpan.textContent = "0";
     });
 
+    // --- Download Functionality ---
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const elements = document.querySelectorAll(".resizable");
 
@@ -820,48 +665,31 @@ body {
         if (currentTarget) {
             setActive(currentTarget);
         } else {
-            document.querySelectorAll('.resizable').forEach(e => {
-                e.classList.remove("active");
-                const removeBtn = e.querySelector('.remove');
-                if (removeBtn) removeBtn.style.display = 'none';
-            });
+            deactivateAll();
         }
         clone.remove();
       }).catch(error => {
           console.error("Error generating image:", error);
           alert("Error generating image. Please try again. Ensure your trophy image is hosted correctly or loaded from the same origin.");
-
           if (currentTarget) {
               setActive(currentTarget);
           } else {
-              document.querySelectorAll('.resizable').forEach(e => {
-                  e.classList.remove("active");
-                  const removeBtn = e.querySelector('.remove');
-                  if (removeBtn) removeBtn.style.display = 'none';
-              });
+              deactivateAll();
           }
           clone.remove();
       });
     });
 
+    // --- Initialization on Load ---
+    loadTrophies(); // Load trophy thumbnails
+    initializeTrophyBackgroundFromURL(); // Initialize background based on URL parameter or default
+    
+    // Initial display values
     fontSizeValueSpan.textContent = fontSizeRange.value;
     fontSizeNumber.value = fontSizeRange.value;
     imageScaleValueSpan.textContent = imageScaleRange.value;
     rotationValueSpan.textContent = rotationRange.value;
+    deactivateAll(); // Ensure a clean initial state
   </script>
- <script>
-    const params = new URLSearchParams(window.location.search);
-    const imgPath = params.get("img");
-    const baseImage = document.getElementById("baseImage");
-
-    if (imgPath) {
-      baseImage.src = imgPath;
-    } else {
-      baseImage.src = "images/default-trophy.png";
-    }
-  </script>
-
-  
-
 </body>
 </html>
