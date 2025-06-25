@@ -25,9 +25,9 @@
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav>
       <ul id="nav-list">
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#products">Products</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#aboutus">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ul>
     </nav>
@@ -99,6 +99,7 @@
     <div class="products-grid">
       <!-- Repeat this card for each merged product -->
       <div class="product-card">
+        <a href="products.html">
         <img src="images/rods.png" alt="Cast Acrylic Rod">
         <div class="product-info">
           <div class="product-title">
@@ -116,6 +117,7 @@
           </div>
           <a href="#contact-form" class="order-btn">Enquire Now</a>
         </div>
+        </a>
       </div>
 
       <div class="product-card">
@@ -162,19 +164,20 @@
       <!-- Add more cards here -->
     </div>
   </section>
+
   <section id="stats" class="stats-section">
     <h2 class="section-title">Our Impact</h2>
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-icon"><img src="images/done.png" width="50" alt="order icone" ></div>
-        <h3><span class="count" data-target="3000">0</span><span class="plus-sign">+</span></h3>  
+        <div class="stat-icon"><img src="images/order.png" width="70" height="70" alt="order icone"></div>
+        <h3><span class="count" data-target="3000">0</span><span class="plus-sign">+</span></h3>
         <p>Completed Orders</p>
         <!-- <div class="progress-bar">
           <div class="bar-fill" data-progress="95"></div>
         </div> -->
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🌍</div>
+        <div class="stat-icon"><img src="images/export2.png" width="70"  alt="order icone"></div>
         <h3><span class="count" data-target="25">0</span><span class="plus-sign">+</span></h3>
         <p>Countries Exported</p>
         <!-- <div class="progress-bar">
@@ -182,7 +185,7 @@
         </div> -->
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🧑‍🤝‍🧑</div>
+        <div class="stat-icon"><img src="images/rating.png" width="75" alt="order icone"></div>
         <h3><span class="count" data-target="120">0</span><span class="plus-sign">+</span></h3>
         <p>Happy Clients</p>
         <!-- <div class="progress-bar">
@@ -190,7 +193,7 @@
         </div> -->
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🏆</div>
+        <div class="stat-icon"><img src="images/success.png" width="70" height="70" alt="order icone"></div>
         <h3><span class="count" data-target="6">0</span><span class="plus-sign">+</span></h3>
         <p>Years of Experience</p>
         <!-- <div class="progress-bar">
@@ -199,9 +202,6 @@
       </div>
     </div>
   </section>
-
-
-
 
   <section id="testimonials">
     <h2 class="section-title">Testimonials</h2>
@@ -239,7 +239,6 @@
     </div>
   </section>
 
-
   <section id="contact-form">
     <h2 class="section-title">Get In Touch</h2>
 
@@ -268,6 +267,11 @@
           </div>
 
           <div class="input-icon-group">
+            <img src="https://img.icons8.com/ios-filled/20/phone.png" alt="Phone Icon" />
+            <input type="tel" name="phone" placeholder="Your Phone Number" pattern="[0-9]{6,15}" required />
+          </div>
+         
+          <div class="input-icon-group">
             <img src="https://img.icons8.com/ios-filled/20/new-post.png" alt="Email Icon" />
             <input type="email" name="email" placeholder="Your Email" required />
           </div>
@@ -282,15 +286,28 @@
       </div>
     </div>
   </section>
-
-  <div id="success-popup" class="popup">
-    <div class="popup-content">
-      <img src="https://img.icons8.com/emoji/48/checked-emoji.png" alt="Success" />
-      <h3>Message Sent!</h3>
-      <p>Thank you for contacting us. We'll get back to you soon.</p>
-      <button onclick="closePopup()">Close</button>
-    </div>
+<!-- Enquiry Popup Form -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-form">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>Send Us an Enquiry</h2>
+    <form id="popupEnquiryForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <textarea name="enquiry" placeholder="Product Name or Your Enquiry" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
   </div>
+</div>
+
+ <!-- Success Popup -->
+<div id="success-popup" class="success-popup">
+  <div class="success-content">
+    <h3>✅ Enquiry Sent!</h3>
+    <p>Thank you for reaching out. We'll contact you shortly.</p>
+  </div>
+</div>
 
   <footer>
     &copy; 2025 Mukesh Enterprise | +91‑9979959364 | bhavikshah14@gmail.com<br />
@@ -556,20 +573,55 @@
       requestAnimationFrame(update);
     }
 
-  document.querySelectorAll(".bar-fill").forEach(bar => {
-    const width = bar.getAttribute("data-progress");
-    ScrollTrigger.create({
-      trigger: bar,
-      start: "top 85%",
-      onEnter: () => {
-        bar.style.width = width + "%";
-      }
+    document.querySelectorAll(".bar-fill").forEach(bar => {
+      const width = bar.getAttribute("data-progress");
+      ScrollTrigger.create({
+        trigger: bar,
+        start: "top 85%",
+        onEnter: () => {
+          bar.style.width = width + "%";
+        }
+      });
     });
-  });
 
-
+document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
+  this.value = this.value.replace(/\D/g, '');
+});
 
   </script>
+
+
+<script>
+  // Show popup after 10 seconds
+  setTimeout(() => {
+    document.getElementById('popup-overlay').style.display = 'flex';
+  }, 10000); // 10 seconds
+
+  function closePopup() {
+    document.getElementById('popup-overlay').style.display = 'none';
+  }
+
+  document.getElementById('popupEnquiryForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Optional: send data to Formspree / WhatsApp / etc. here
+
+  // Show success popup
+  const successPopup = document.getElementById("success-popup");
+  successPopup.style.display = "block";
+
+  // Hide form popup
+  document.getElementById('popup-overlay').style.display = 'none';
+
+  // Reset form
+  this.reset();
+
+  // Auto-hide success popup after 4 seconds
+  setTimeout(() => {
+    successPopup.style.display = "none";
+  }, 4000);
+});
+</script>
 
 </body>
 
