@@ -8,11 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link href="css/main.css" rel="stylesheet" />
+  <!-- OR for PNG -->
+  <link rel="icon" href="images/only_svg.png" type="image/png" />
+  <!-- Optional: For Apple devices -->
+  <link rel="apple-touch-icon" href="images/only_svg.png" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  </script>
+  <script src="js/floating-btn.js"></script>
 </head>
 
 <body>
@@ -38,14 +42,14 @@
     <div class="hero-content">
       <div class="hero-left">
         <h1 class="char-reveal" style="margin-bottom: 10px; "
-          data-text="We Don’t Just Make Acrylic. We Shape Innovation."></h1>
+          data-text="We Don't Just Make Acrylic. We Shape Innovation."></h1>
         <p class="char-reveal"
           data-text="High-quality acrylic rods, mementos, trophies, and more – engineered   with precision, delivered with trust.">
         </p>
         <a href="#products" class="cta-btn">Explore Our Work</a>
       </div>
       <div class="hero-right">
-        <img src="images/trophy2.png" alt="Acrylic Rods" class="trophy-image">
+        <img src="Raw imges/Product Images/Trophy Images/tr1wbg.png" alt="Acrylic Rods" class="trophy-image">
       </div>
     </div>
   </section>
@@ -59,7 +63,7 @@
         <h3 class="highlight">Who We Are</h3>
         <p>
           <strong>Mukesh Enterprise</strong> is a leading acrylic manufacturer based in <strong>Jamnagar,
-            Gujarat</strong>. Since <strong>2019</strong>, we’ve produced top-quality acrylic rods, awards, trophies,
+            Gujarat</strong>. Since <strong>2019</strong>, we've produced top-quality acrylic rods, awards, trophies,
           and customized mementos. With a skilled team and advanced machinery, we deliver creative, durable, and
           visually striking acrylic products to businesses, schools, NGO's and corporates.
         </p>
@@ -82,7 +86,7 @@
       <div class="about-col text-left about-block">
         <h3 class="highlight">Why Choose Us</h3>
         <p>With a monthly capacity of <strong>3,000+ units</strong>, Mukesh Enterprise ensures timely delivery,
-          consistent quality, and complete client satisfaction. Here’s why our customers trust us:</p>
+          consistent quality, and complete client satisfaction. Here's why our customers trust us:</p>
         <ul class="about-list">
           <li><img src="https://img.icons8.com/color/24/ok--v1.png" /> Custom-made acrylic trophies and rods</li>
           <li><img src="https://img.icons8.com/color/24/ok--v1.png" /> Fast production with tight quality control</li>
@@ -115,7 +119,7 @@
             </span>
             <button class="read-more-btn">Read More</button>
           </div>
-          <a href="#contact-form" class="order-btn">Enquire Now</a>
+          <button class="order-btn" onclick="openProductEnquiry('Acrylic Rods', 'images/rods.png')">Enquire Now</button>
         </div>
         </a>
       </div>
@@ -136,7 +140,7 @@
             </span>
             <button class="read-more-btn">Read More</button>
           </div>
-          <a href="#contact-form" class="order-btn">Enquire Now</a>
+          <button class="order-btn" onclick="openProductEnquiry('Custom Acrylic Trophy', 'images/trophy3.jpg')">Enquire Now</button>
         </div>
       </div>
 
@@ -156,7 +160,7 @@
             </span>
             <button class="read-more-btn">Read More</button>
           </div>
-          <a href="#contact-form" class="order-btn">Enquire Now</a>
+          <button class="order-btn" onclick="openProductEnquiry('Acrylic Mementos', 'images/trophy1.png')">Enquire Now</button>
         </div>
       </div>
 
@@ -203,14 +207,58 @@
     </div>
   </section>
 
-  <section id="testimonials">
-    <h2 class="section-title">Testimonials</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">"Great quality and timely delivery!"</div>
-      <div class="testimonial-card">"Our go-to vendor for acrylic trophies."</div>
-      <div class="testimonial-card">"Professional, precise, and personalized service."</div>
+<section id="testimonial-slider">
+  <h2 class="section-title">What Our Customers Say</h2>
+  <div class="swiper testimonial-swiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide testimonial-slide">
+        <img src="images/trophy1.png" alt="Product" class="testimonial-image" />
+        <div class="testimonial-text">
+          <p class="stars">⭐⭐⭐⭐⭐</p>
+          <p class="review">"Loved the clarity and finish on this trophy."</p>
+          <p class="author">– Ramesh Patel</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide testimonial-slide">
+        <img src="images/rods.png" alt="Product" class="testimonial-image" />
+        <div class="testimonial-text">
+          <p class="stars">⭐⭐⭐⭐</p>
+          <p class="review">"Perfect rods for our interior setup!"</p>
+          <p class="author">– Meena Joshi</p>
+        </div>
+      </div>
+
+      <div class="swiper-slide testimonial-slide">
+        <img src="images/trophy3.jpg" alt="Product" class="testimonial-image" />
+        <div class="testimonial-text">
+          <p class="stars">⭐⭐⭐⭐⭐</p>
+          <p class="review">"Amazing engraving quality."</p>
+          <p class="author">– Anil Desai</p>
+        </div>
+      </div>
+<div class="swiper-slide testimonial-slide">
+        <img src="images/trophy2.png" alt="Product" class="testimonial-image" />
+        <div class="testimonial-text">
+          <p class="stars">⭐⭐⭐⭐⭐</p>
+          <p class="review">"Amazing engraving quality."</p>
+          <p class="author">– Anil Desai</p>
+        </div>
+      </div>
+      <div class="swiper-slide testimonial-slide">
+        <img src="images/trophy3.jpg" alt="Product" class="testimonial-image" />
+        <div class="testimonial-text">
+          <p class="stars">⭐⭐⭐⭐⭐</p>
+          <p class="review">"Amazing engraving quality."</p>
+          <p class="author">– Anil Desai</p>
+        </div>
+      </div>
     </div>
-  </section>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
 
   <section id="gallery">
     <h2 class="section-title">Gallery</h2>
@@ -221,23 +269,23 @@
     </div>
   </section>
 
-  <section id="product-slider">
+  <!-- <section id="product-slider">
     <h2 class="section-title">Featured Products</h2>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="images/trophy1.png" alt="Product 1" class="slider-image" />
+          <img src="images/trophy1.png" alt="Product 1" class="slider-image-feture" />
         </div>
         <div class="swiper-slide">
-          <img src="images/trophy3.jpg" alt="Product 2" class="slider-image" />
+          <img src="images/trophy3.jpg" alt="Product 2" class="slider-image-feture" />
         </div>
         <div class="swiper-slide">
-          <img src="images/trophy2.png" alt="Product 3" class="slider-image" />
+          <img src="images/trophy2.png" alt="Product 3" class="slider-image-feture" />
         </div>
       </div>
       <div class="swiper-pagination"></div>
     </div>
-  </section>
+  </section> -->
 
   <section id="contact-form">
     <h2 class="section-title">Get In Touch</h2>
@@ -249,7 +297,7 @@
         <div class="map-wrapper">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3729.662059797218!2d70.00631699999999!3d22.4313054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3957155d019f428f%3A0xfce5cbf954d5d7e!2sMukesh%20Enterprise!5e0!3m2!1sen!2sin!4v1718963910000!5m2!1sen!2sin"
-            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            width="100%" style="height: 100%;" allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
           <a href="https://maps.app.goo.gl/AHqsmjKg7ayeQLAU6" class="map-inline-btn" target="_blank" rel="noopener">
@@ -295,8 +343,45 @@
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" />
       <input type="email" name="email" placeholder="Email Address" required />
-      <textarea name="enquiry" placeholder="Product Name or Your Enquiry" required></textarea>
+      <textarea name="enquiry" placeholder="Your Enquiry" required></textarea>
       <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Product Enquiry Popup Form -->
+<div class="popup-overlay" id="product-popup-overlay">
+  <div class="popup-form product-enquiry-form">
+    <span class="close-btn" onclick="closeProductPopup()">&times;</span>
+    <div class="product-enquiry-header">
+      <img id="product-popup-image" src="" alt="Product" class="product-popup-image" />
+      <h2 id="product-popup-title">Product Enquiry</h2>
+    </div>
+    <form id="productEnquiryForm">
+      <input type="hidden" id="product-name" name="productName" />
+      <input type="hidden" id="product-image" name="productImage" />
+      
+      <div class="input-icon-group">
+        <img src="https://img.icons8.com/ios-filled/20/user.png" alt="Name Icon" />
+        <input type="text" name="name" placeholder="Your Name" required />
+      </div>
+
+      <div class="input-icon-group">
+        <img src="https://img.icons8.com/ios-filled/20/phone.png" alt="Phone Icon" />
+        <input type="tel" name="phone" placeholder="Your Phone Number" pattern="[0-9]{6,15}" required />
+      </div>
+     
+      <div class="input-icon-group">
+        <img src="https://img.icons8.com/ios-filled/20/new-post.png" alt="Email Icon" />
+        <input type="email" name="email" placeholder="Your Email" required />
+      </div>
+
+      <div class="input-icon-group textarea">
+        <img src="https://img.icons8.com/ios-filled/20/speech-bubble.png" alt="Message Icon" />
+        <textarea name="message" rows="4" placeholder="Any specific description or message about this product..." required></textarea>
+      </div>
+
+      <button type="submit">Send Enquiry</button>
     </form>
   </div>
 </div>
@@ -314,10 +399,63 @@
     Survey No. 238/245/246, Plot 35, Lakhabavad, Opp Sparsh Biotech, Jamnagar–361006
   </footer>
 
-  <!-- <a href="https://wa.me/919979959364" class="whatsapp-float" target="_blank" rel="noopener">
-    <img src="https://img.icons8.com/fluency/48/000000/whatsapp.png" alt="WhatsApp" />
-    <span class="wa-text">Get in Touch</span>
-  </a> -->
+  <!-- Floating Action Button Container -->
+<div class="fab-container" id="fabContainer">
+  <div class="fab-options" id="fabOptions">
+    <!-- WhatsApp -->
+    <div id="fab-icon" onclick="toggleWhatsAppChat()">
+      <a rel="noopener" class="fab-icon">
+        <img src="images/social.svg" alt="Chat on WhatsApp" />
+        <span class="fab-label">WhatsApp</span>
+      </a>
+    </div>
+    <!-- Call -->
+    <a href="tel:+919979959364" class="fab-icon">
+      <img src="images/telephone.svg" alt="Call" />
+      <span class="fab-label">Call</span>
+    </a>
+    <!-- Email -->
+    <a href="mailto:contact@mukeshenterprise.com" class="fab-icon">
+      <img src="images/mail.svg" alt="Email" />
+      <span class="fab-label">Email</span>
+    </a>
+    <!-- SMS -->
+    <a href="sms:+919979959364" class="fab-icon">
+      <img src="images/talk.svg" alt="SMS" />
+      <span class="fab-label">SMS</span>
+    </a>
+  </div>
+<div class="fab-main" onclick="toggleFAB()">
+    <img src="images/comment.png" alt="Contact" class="contact-icon" style="margin-top: 5px;margin-left: 1px;"/>
+    <img src="images/close.svg" alt="Close" class="close-icon" style="display: none;padding: 5px" />
+    <span class="fab-text hi-text">Hi</span>
+    <span class="fab-text close-text" style="display: none;right: -75px;rotate: 180deg;">Close</span>
+  </div>
+  <!-- WhatsApp Mini Chat UI -->
+  <!-- WhatsApp Chat Box -->
+<div id="whatsapp-chat-box">
+  <div class="whatsapp-header">
+    <span><img src="images/wp.svg" alt="Chat on WhatsApp" width="30px" height="30px" /> Let's chat on WhatsApp</span>
+    <button onclick="toggleWhatsAppChat()" style="background: transparent;
+    border: none;"><img src="images/down_arrow.svg" width="25px" height="25px"></button>
+  </div>
+  <div class="whatsapp-body">
+    <div class="admin-msg">
+      <p>How can I help you? :)</p>
+      <span class="time">10:51</span>
+    </div>
+  </div>
+  <div class="whatsapp-footer">
+    <div class="input-container">
+      <span><img src="images/smile.svg" width="20px" height="20px"></span>
+      <input type="text" id="whatsapp-user-msg" placeholder="Write your message..." />
+    
+    </div>
+    <button onclick="sendWhatsAppMessage()"><span><img src="images/send.svg" width="23px" height="23px"></span></button>
+  </div>
+</div>
+</div>
+
 
   <script>
     if ('scrollRestoration' in history) {
@@ -518,21 +656,6 @@
       }
     });
 
-    // whatsapp funtion
-    (function () {
-      var options = {
-        whatsapp: "+919979959364", // Replace with your number
-        call_to_action: "Message us",
-        position: "right",
-        button_color: "#00ff5e",
-        pre_filled_message: "Hi! I'm interested in your acrylic products.",
-      };
-      var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
-      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
-
     //Function for Number Counting
 
     const counters = document.querySelectorAll(".count");
@@ -589,8 +712,6 @@ document.querySelector('input[name="phone"]').addEventListener('input', function
 });
 
   </script>
-
-
 <script>
   // Show popup after 10 seconds
   setTimeout(() => {
@@ -599,6 +720,22 @@ document.querySelector('input[name="phone"]').addEventListener('input', function
 
   function closePopup() {
     document.getElementById('popup-overlay').style.display = 'none';
+  }
+
+  // Product Enquiry Popup Functions
+  function openProductEnquiry(productName, productImage) {
+    // Set product details in the popup
+    document.getElementById('product-popup-image').src = productImage;
+    document.getElementById('product-popup-title').textContent = productName;
+    document.getElementById('product-name').value = productName;
+    document.getElementById('product-image').value = productImage;
+    
+    // Show the popup
+    document.getElementById('product-popup-overlay').style.display = 'flex';
+  }
+
+  function closeProductPopup() {
+    document.getElementById('product-popup-overlay').style.display = 'none';
   }
 
   document.getElementById('popupEnquiryForm').addEventListener('submit', function(e) {
@@ -621,6 +758,120 @@ document.querySelector('input[name="phone"]').addEventListener('input', function
     successPopup.style.display = "none";
   }, 4000);
 });
+
+  // Product Enquiry Form Submission
+  document.getElementById('productEnquiryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get form data
+    const formData = new FormData(this);
+    const productName = formData.get('productName');
+    const productImage = formData.get('productImage');
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    // Optional: send data to Formspree / WhatsApp / etc. here
+    // You can customize this to send to your preferred service
+    
+    // Show success popup
+    const successPopup = document.getElementById("success-popup");
+    successPopup.style.display = "block";
+
+    // Hide product enquiry popup
+    document.getElementById('product-popup-overlay').style.display = 'none';
+
+    // Reset form
+    this.reset();
+
+    // Auto-hide success popup after 4 seconds
+    setTimeout(() => {
+      successPopup.style.display = "none";
+    }, 4000);
+  });
+
+  // Close product popup when clicking outside
+  document.getElementById('product-popup-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeProductPopup();
+    }
+  });
+
+  // Close regular popup when clicking outside
+  document.getElementById('popup-overlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closePopup();
+    }
+  });
+</script>
+<script>
+  new Swiper(".testimonial-swiper", {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 3,
+    spaceBetween: 30,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+        spaceBetween: 15
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30
+      }
+    }
+  });
+</script>
+
+<script>
+  // Close FAB when clicking outside
+  document.addEventListener('click', function(event) {
+    const fabContainer = document.querySelector('.fab-container');
+    const fabOptions = document.getElementById('fabOptions');
+    
+    if (isFabOpen && !fabContainer.contains(event.target)) {
+      const mainBtn = document.querySelector('.fab-main');
+      const contactIcon = document.querySelector('.contact-icon');
+      const closeIcon = document.querySelector('.close-icon');
+      const hiText = document.querySelector('.hi-text');
+      const closeText = document.querySelector('.close-text');
+      
+      mainBtn.classList.remove('rotate');
+      fabOptions.classList.remove('show');
+      
+      // Switch text
+      closeText.style.display = 'none';
+      hiText.style.display = 'block';
+      
+      // Smooth icon transition
+      closeIcon.style.opacity = '0';
+      closeIcon.style.transform = 'scale(0.8)';
+      setTimeout(() => {
+        closeIcon.style.display = 'none';
+        contactIcon.style.display = 'block';
+        contactIcon.style.opacity = '0';
+        contactIcon.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+          contactIcon.style.opacity = '1';
+          contactIcon.style.transform = 'scale(1)';
+        }, 50);
+      }, 200);
+      
+      isFabOpen = false;
+    }
+  });
 </script>
 
 </body>
