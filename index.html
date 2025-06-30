@@ -17,6 +17,14 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/floating-btn.js"></script>
+  <!-- EmailJS for sending emails -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // Initialize EmailJS with your public key
+      emailjs.init("Wipj5rJLUpdllF8fu"); // Replace with your actual EmailJS public key
+    })();
+  </script>
 </head>
 
 <body>
@@ -338,13 +346,13 @@
 <div class="popup-overlay" id="popup-overlay">
   <div class="popup-form">
     <span class="close-btn" onclick="closePopup()">&times;</span>
-    <h2>Send Us an Enquiry</h2>
+    <h2 style="margin-bottom: 1rem!important;">Send Us an Enquiry</h2>
     <form id="popupEnquiryForm">
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="tel" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" />
       <input type="email" name="email" placeholder="Email Address" required />
       <textarea name="enquiry" placeholder="Your Enquiry" required></textarea>
-      <button type="submit">Submit</button>
+      <button type="submit" style="margin-top: 0.5rem!important;">Submit</button>
     </form>
   </div>
 </div>
@@ -366,9 +374,18 @@
         <input type="text" name="name" placeholder="Your Name" required />
       </div>
 
-      <div class="input-icon-group">
+      <div class="input-icon-group phone-group">
         <img src="https://img.icons8.com/ios-filled/20/phone.png" alt="Phone Icon" />
-        <input type="tel" name="phone" placeholder="Your Phone Number" pattern="[0-9]{6,15}" required />
+        <div class="phone-input-container">
+          <select name="countryCode" id="countryCode" class="country-code-select">
+            <option value="+91" data-flag="🇮🇳">🇮🇳 +91 (India)</option>
+            <option value="+1" data-flag="🇺🇸">🇺🇸 +1 (USA)</option>
+            <option value="+44" data-flag="🇬🇧">🇬🇧 +44 (UK)</option>
+            <option value="+971" data-flag="🇦🇪">🇦🇪 +971 (UAE)</option>
+            <option value="+61" data-flag="🇦🇺">🇦🇺 +61 (Australia)</option>
+          </select>
+          <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{6,15}" required />
+        </div>
       </div>
      
       <div class="input-icon-group">
@@ -381,7 +398,13 @@
         <textarea name="message" rows="4" placeholder="Any specific description or message about this product..." required></textarea>
       </div>
 
-      <button type="submit">Send Enquiry</button>
+      <div class="form-buttons">
+        <button type="submit">Send Enquiry</button>
+        <button type="button" onclick="sendWhatsAppEnquiryWithImage()" class="whatsapp-btn">
+          <img src="images/wp.svg" alt="WhatsApp" width="20" height="20" />
+          Send in WhatsApp
+        </button>
+      </div>
     </form>
   </div>
 </div>
@@ -415,7 +438,8 @@
       <span class="fab-label">Call</span>
     </a>
     <!-- Email -->
-    <a href="mailto:contact@mukeshenterprise.com" class="fab-icon">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bhavikshah14@gmail.com&su=Acrylic%20Product%20Enquiry&body=Hi,%0D%0A%0D%0AI'm interested in your acrylic products and would like to know more.%0D%0APlease share details about sizes, pricing, and customization options.%0D%0A%0D%0AThanks!%0D%0A[Your Name]" 
+    target="_blank"  class="fab-icon">
       <img src="images/mail.svg" alt="Email" />
       <span class="fab-label">Email</span>
     </a>
@@ -449,7 +473,6 @@
     <div class="input-container">
       <span><img src="images/smile.svg" width="20px" height="20px"></span>
       <input type="text" id="whatsapp-user-msg" placeholder="Write your message..." />
-    
     </div>
     <button onclick="sendWhatsAppMessage()"><span><img src="images/send.svg" width="23px" height="23px"></span></button>
   </div>
@@ -647,13 +670,68 @@
 
     //  Basic From validaion
     document.getElementById("enquiryForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      
       const name = this.name.value.trim();
       const email = this.email.value.trim();
+      const phone = this.phone.value.trim();
       const message = this.message.value.trim();
-      if (!name || !email || !message) {
+      
+      if (!name || !email || !phone || !message) {
         alert("Please fill out all fields.");
-        e.preventDefault();
+        return;
       }
+
+      // Get submit button and show loading state
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      // Prepare email template parameters
+      const templateParams = {
+        to_email: 'bhavikshah14@gmail.com', // Admin email
+        from_name: name,
+        from_email: email,
+        from_phone: phone,
+        message: message,
+        enquiry_type: 'Contact Form Enquiry',
+        enquiry_date: new Date().toLocaleString('en-IN', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      };
+
+      // Send email using EmailJS
+      emailjs.send('service_cw0rxbx', 'template_12tb1mg', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          
+          // Show success popup
+          const successPopup = document.getElementById("success-popup");
+          successPopup.style.display = "block";
+
+          // Reset form
+          document.getElementById("enquiryForm").reset();
+
+          // Auto-hide success popup after 4 seconds
+          setTimeout(() => {
+            successPopup.style.display = "none";
+          }, 4000);
+        }, function(error) {
+          console.log('FAILED...', error);
+          
+          // Show error message
+          alert('Sorry, there was an error sending your message. Please try again or contact us directly.');
+        })
+        .finally(function() {
+          // Reset button state
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
     });
 
     //Function for Number Counting
@@ -741,54 +819,145 @@ document.querySelector('input[name="phone"]').addEventListener('input', function
   document.getElementById('popupEnquiryForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Optional: send data to Formspree / WhatsApp / etc. here
+  // Get form data
+  const formData = new FormData(this);
+  const name = formData.get('name');
+  const phone = formData.get('phone');
+  const email = formData.get('email');
+  const enquiry = formData.get('enquiry');
 
-  // Show success popup
-  const successPopup = document.getElementById("success-popup");
-  successPopup.style.display = "block";
+  // Get submit button and show loading state
+  const submitBtn = this.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
 
-  // Hide form popup
-  document.getElementById('popup-overlay').style.display = 'none';
+  // Prepare email template parameters
+  const templateParams = {
+    to_email: 'bhavikshah14@gmail.com', // Admin email
+    from_name: name,
+    from_email: email,
+    from_phone: phone,
+    message: enquiry,
+    enquiry_type: 'General Enquiry',
+    enquiry_date: new Date().toLocaleString('en-IN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  };
 
-  // Reset form
-  this.reset();
+  // Send email using EmailJS
+  emailjs.send('service_cw0rxbx', 'template_12tb1mg', templateParams)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      
+      // Show success popup
+      const successPopup = document.getElementById("success-popup");
+      successPopup.style.display = "block";
 
-  // Auto-hide success popup after 4 seconds
-  setTimeout(() => {
-    successPopup.style.display = "none";
-  }, 4000);
+      // Hide form popup
+      document.getElementById('popup-overlay').style.display = 'none';
+
+      // Reset form
+      document.getElementById('popupEnquiryForm').reset();
+
+      // Auto-hide success popup after 4 seconds
+      setTimeout(() => {
+        successPopup.style.display = "none";
+      }, 4000);
+    }, function(error) {
+      console.log('FAILED...', error);
+      
+      // Show error message
+      alert('Sorry, there was an error sending your enquiry. Please try again or contact us directly.');
+    })
+    .finally(function() {
+      // Reset button state
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    });
 });
 
-  // Product Enquiry Form Submission
-  document.getElementById('productEnquiryForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Get form data
-    const formData = new FormData(this);
-    const productName = formData.get('productName');
-    const productImage = formData.get('productImage');
-    const name = formData.get('name');
-    const phone = formData.get('phone');
-    const email = formData.get('email');
-    const message = formData.get('message');
-
-    // Optional: send data to Formspree / WhatsApp / etc. here
-    // You can customize this to send to your preferred service
+  // Enhanced form submission with validation
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('productEnquiryForm');
+    if (!form) return;
     
-    // Show success popup
-    const successPopup = document.getElementById("success-popup");
-    successPopup.style.display = "block";
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    // Hide product enquiry popup
-    document.getElementById('product-popup-overlay').style.display = 'none';
+      if (!validateForm()) {
+        return;
+      }
 
-    // Reset form
-    this.reset();
+      // Get form data
+      const formData = new FormData(this);
+      const productName = formData.get('productName');
+      const productImage = formData.get('productImage');
+      const name = formData.get('name');
+      const phone = formData.get('phone');
+      const countryCode = formData.get('countryCode');
+      const email = formData.get('email');
+      const message = formData.get('message');
 
-    // Auto-hide success popup after 4 seconds
-    setTimeout(() => {
-      successPopup.style.display = "none";
-    }, 4000);
+      // Get submit button and show loading state
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      // Prepare email template parameters
+      const templateParams = {
+        to_email: 'bhavikshah14@gmail.com', // Admin email
+        from_name: name,
+        from_email: email,
+        from_phone: `${countryCode} ${phone}`,
+        product_name: productName,
+        product_image: productImage,
+        message: message,
+        enquiry_date: new Date().toLocaleString('en-IN', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      };
+
+      // Send email using EmailJS
+      emailjs.send('service_cw0rxbx', 'template_12tb1mg', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          
+          // Show success popup
+          const successPopup = document.getElementById("success-popup");
+          successPopup.style.display = "block";
+
+          // Hide product enquiry popup
+          document.getElementById('product-popup-overlay').style.display = 'none';
+
+          // Reset form
+          document.getElementById('productEnquiryForm').reset();
+
+          // Auto-hide success popup after 4 seconds
+          setTimeout(() => {
+            successPopup.style.display = "none";
+          }, 4000);
+        }, function(error) {
+          console.log('FAILED...', error);
+          
+          // Show error message
+          alert('Sorry, there was an error sending your enquiry. Please try again or contact us directly.');
+        })
+        .finally(function() {
+          // Reset button state
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        });
+    });
   });
 
   // Close product popup when clicking outside
@@ -874,6 +1043,239 @@ document.querySelector('input[name="phone"]').addEventListener('input', function
   });
 </script>
 
-</body>
+<script>
+  // Enhanced WhatsApp function with proper image preview and validation
+  function sendWhatsAppEnquiryWithImage() {
+    // Get form data
+    const form = document.getElementById('productEnquiryForm');
+    const formData = new FormData(form);
+    
+    const productName = formData.get('productName');
+    const productImage = formData.get('productImage');
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const countryCode = formData.get('countryCode');
+    const phone = formData.get('phone');
+    const message = formData.get('message');
 
+    // Enhanced validation
+    if (!validateForm()) {
+      return;
+    }
+
+    // Get the full image URL for better preview
+    const fullImageUrl = window.location.origin + '/' + productImage;
+
+    // Create a more visual WhatsApp message with emojis and proper image preview
+    const whatsappMessage = 
+    `🎉 *Hello Mukesh Enterprise!* 👋🏻
+
+🛍️ *Product Enquiry:*
+${productName}
+
+📸 *Product Image:*
+${fullImageUrl}
+
+👤 *Customer Details:*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 Name: ${name}
+📱 Phone: ${countryCode} ${phone}
+📧 Email: ${email}
+
+💬 *Enquiry Message:*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 *Sent via Mukesh Enterprise Website*
+⏰ ${new Date().toLocaleString('en-IN')}
+
+🙏 *Thank you for your time!* ✨
+
+💡 *To view the product image, click on the link above*`;
+
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // WhatsApp number (your business number)
+    const whatsappNumber = '919979959364';
+    
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    
+    // Close the product enquiry popup
+    closeProductPopup();
+  }
+
+  // Comprehensive form validation function
+  function validateForm() {
+    const form = document.getElementById('productEnquiryForm');
+    const formData = new FormData(form);
+    
+    // Clear previous error states
+    clearFormErrors();
+    
+    let isValid = true;
+    
+    // Validate name
+    const name = formData.get('name').trim();
+    if (!name || name.length < 2) {
+      showFieldError('name', 'Please enter a valid name (minimum 2 characters)');
+      isValid = false;
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+      showFieldError('name', 'Name should only contain letters and spaces');
+      isValid = false;
+    }
+    
+    // Validate phone
+    const phone = formData.get('phone').trim();
+    const countryCode = formData.get('countryCode');
+    
+    if (!phone) {
+      showFieldError('phone', 'Please enter your phone number');
+      isValid = false;
+    } else if (!/^\d{6,15}$/.test(phone)) {
+      showFieldError('phone', 'Please enter a valid phone number (6-15 digits)');
+      isValid = false;
+    }
+    
+    // Validate email
+    const email = formData.get('email').trim();
+    if (!email) {
+      showFieldError('email', 'Please enter your email address');
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showFieldError('email', 'Please enter a valid email address');
+      isValid = false;
+    }
+    
+    // Validate message
+    const message = formData.get('message').trim();
+    if (!message || message.length < 10) {
+      showFieldError('message', 'Please enter a message (minimum 10 characters)');
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+
+  // Show field error
+  function showFieldError(fieldName, message) {
+    const field = document.querySelector(`[name="${fieldName}"]`);
+    if (!field) return;
+    
+    const inputGroup = field.closest('.input-icon-group');
+    if (!inputGroup) return;
+    
+    inputGroup.classList.add('error');
+    
+    // Remove existing error message
+    const existingError = inputGroup.querySelector('.error-message');
+    if (existingError) {
+      existingError.remove();
+    }
+    
+    // Add new error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    inputGroup.appendChild(errorDiv);
+  }
+
+  // Clear all form errors
+  function clearFormErrors() {
+    const errorGroups = document.querySelectorAll('.input-icon-group.error');
+    errorGroups.forEach(group => {
+      group.classList.remove('error');
+      const errorMessage = group.querySelector('.error-message');
+      if (errorMessage) {
+        errorMessage.remove();
+      }
+    });
+  }
+
+  // Initialize form validation when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('productEnquiryForm');
+    if (!form) return;
+    
+    // Add real-time validation for name field
+    const nameField = form.querySelector('[name="name"]');
+    if (nameField) {
+      nameField.addEventListener('input', function() {
+        const value = this.value.trim();
+        const inputGroup = this.closest('.input-icon-group');
+        
+        if (value.length >= 2 && /^[a-zA-Z\s]+$/.test(value)) {
+          inputGroup.classList.remove('error');
+          inputGroup.classList.add('success');
+          const errorMessage = inputGroup.querySelector('.error-message');
+          if (errorMessage) errorMessage.remove();
+        } else {
+          inputGroup.classList.remove('success');
+        }
+      });
+    }
+    
+    // Add real-time validation for phone field
+    const phoneField = form.querySelector('[name="phone"]');
+    if (phoneField) {
+      phoneField.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, ''); // Only allow digits
+        const value = this.value.trim();
+        const inputGroup = this.closest('.input-icon-group');
+        
+        if (value.length >= 6 && value.length <= 15) {
+          inputGroup.classList.remove('error');
+          inputGroup.classList.add('success');
+          const errorMessage = inputGroup.querySelector('.error-message');
+          if (errorMessage) errorMessage.remove();
+        } else {
+          inputGroup.classList.remove('success');
+        }
+      });
+    }
+    
+    // Add real-time validation for email field
+    const emailField = form.querySelector('[name="email"]');
+    if (emailField) {
+      emailField.addEventListener('input', function() {
+        const value = this.value.trim();
+        const inputGroup = this.closest('.input-icon-group');
+        
+        if (value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          inputGroup.classList.remove('error');
+          inputGroup.classList.add('success');
+          const errorMessage = inputGroup.querySelector('.error-message');
+          if (errorMessage) errorMessage.remove();
+        } else {
+          inputGroup.classList.remove('success');
+        }
+      });
+    }
+    
+    // Add real-time validation for message field
+    const messageField = form.querySelector('[name="message"]');
+    if (messageField) {
+      messageField.addEventListener('input', function() {
+        const value = this.value.trim();
+        const inputGroup = this.closest('.input-icon-group');
+        
+        if (value.length >= 10) {
+          inputGroup.classList.remove('error');
+          inputGroup.classList.add('success');
+          const errorMessage = inputGroup.querySelector('.error-message');
+          if (errorMessage) errorMessage.remove();
+        } else {
+          inputGroup.classList.remove('success');
+        }
+      });
+    }
+  });
+</script>
+
+</body>
 </html>
