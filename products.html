@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Our Products - Mukesh Enterprise</title>
+    <link rel="icon" href="images/only_svg.png" type="image/png" />
+  <!-- Optional: For Apple devices -->
+  <link rel="apple-touch-icon" href="images/only_svg.png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous"><link rel="stylesheet" href="css/products.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/enquiry-system.js"></script>
+</head>
+
+<body>
+  <div id="particles-js"></div>
+  <header class="glass-navbar">
+    <div class="logo">
+      <a href="index.html"><img src="images/LOGO.png" alt="Mukesh Enterprise Logo" /></a>
+    </div>
+    <nav>
+      <ul id="nav-list" class="mb-0">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#aboutus">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="products" class="mb-0">
+    <div class="text-center mt-1">
+      <h2 class=" text-center section-title animated-heading">Explore Our Acrylic Products</h2>
+      <p class="section-subtitle">Designed for elegance. Built for performance.</p>
+    </div>
+  </section>
+
+  <div class="container mt-4">
+    <div class="mt-0">
+      <!-- Filter Controls -->
+      <div class="search-bar-wrapper">
+        <div class="search-bar">
+          <img src="https://img.icons8.com/ios-glyphs/20/000000/search--v1.png" alt="Search Icon" />
+          <input type="text" id="searchInput" placeholder="Search products..." />
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-category="all">All</button>
+      <button class="tab" data-category="rod">Rods</button>
+      <button class="tab" data-category="trophy">Trophies</button>
+      <button class="tab" data-category="memento">Mementos</button>
+    </div>
+  </div>
+    <!-- Product Grid -->
+  <div class="container mt-4">
+    <div class="row">
+
+      <!-- Card 1 -->
+       <div class="col-md-4 " id="productGrid">
+        <div class="card product-card p-3">
+            <a href="product_details.html?id=rod" class="w-100 cursor-pointer">
+          <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+          </a>
+          <div class="card-body p-0 pt-3">
+            <h5 class="card-title product-title">Acrylic Rod</h5>
+            <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+            <a href="#" class="btn order-btn w-100">Enquire Now</a>
+          </div>
+        </div>
+       </div>
+
+       <!-- Card 2 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4" id="productGrid">
+          <div class="card product-card p-3">
+            <a href="product_details.html?id=trophy" class="w-100 cursor-pointer">
+              <img src="Raw imges/Product Images/Trophy Images/t1.png" class="card-img-top" style="width: 100%;height: 400px!important;object-fit: cover;">
+            </a>
+            <div class="card-body p-0 pt-3">
+              <h5 class="card-title product-title">Acrylic Trophy</h5>
+              <p class="card-text product-desc mb-0">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+              <a href="#" class="btn order-btn w-100">Enquire Now</a>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+
+
+    <!-- <div class="products-grid" id="productGrid">
+      
+        <div class="product-card" data-category="rod" data-name="acrylic rod" >
+          <a href="product_details.html?id=rod">
+          <img src="images/rods.png" alt="Acrylic Rod" />
+          <div class="product-info">
+            <h3 class="product-title">Acrylic Rod</h3>
+            <p class="product-desc">Crystal-clear rod ideal for machining, decoration, and industrial use.</p>
+            <a href="#contact-form" class="order-btn">Enquire Now</a>
+          </div>
+          </a>
+        </div>
+
+        <div class="product-card" data-category="trophy" data-name="acrylic trophy" >
+          <a href="product_details.html?id=acrylic-trophy">
+            <img src="images/trophy1.png" alt="Acrylic Trophy" />
+            <div class="product-info">
+              <h3 class="product-title">Acrylic Trophy</h3>
+              <p class="product-desc">Custom-designed trophy perfect for events and awards.</p>
+              <a href="#contact-form" class="order-btn">Enquire Now</a>
+            </div>
+          </a>
+        </div>
+
+    <div class="product-card" data-category="memento" data-name="acrylic memento" data-id="3" onclick="viewProduct(3)">
+      <a href="product_details.html?id=memento">
+        <img src="images/trophy3.jpg" alt="Acrylic Memento" />
+        <div class="product-info">
+          <h3 class="product-title">Acrylic Memento</h3>
+          <p class="product-desc">Elegant and long-lasting gift for recognition and appreciation.</p>
+          <a href="customize.html?image=images/trophy3.jpg" class="order-btn">Enquire Now</a>
+        </div>
+      </a>
+    </div>
+
+    <div class="product-card" data-category="memento" data-name="acrylic memento" data-id="3" onclick="viewProduct(3)">
+      <a href="product_details.html?id=memento">
+        <img src="images/trophy3.jpg" alt="Acrylic Memento" />
+        <div class="product-info">
+          <h3 class="product-title">Acrylic Memento</h3>
+          <p class="product-desc">Elegant and long-lasting gift for recognition and appreciation.</p>
+          <a href="customize.html?image=images/trophy3.jpg" class="order-btn">Enquire Now</a>
+        </div>
+      </a>
+    </div> -->
+    
+    </div>
+    <p id="noResultsMsg" style="display:none; text-align:center; color:#ccc; font-size:1.1rem; margin-top:1rem;">
+      No products found. Try a different search or category.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Mukesh Enterprise | +91‑9979959364 | bhavikshah14@gmail.com<br />
+    Survey No. 238/245/246, Plot 35, Lakhabavad, Opp Sparsh Biotech, Jamnagar–361006
+  </footer>
+
+
+  <script>
+
+    new Swiper('.mySwiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80
+        },
+        "color": {
+          "value": "#00ff5e"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true
+        },
+        "size": {
+          "value": 4,
+          "random": true
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.2,
+          "direction": "none",
+          "random": true,
+          "straight": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true },
+          "onclick": { "enable": true }
+        }
+      },
+      "retina_detect": true
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const tabs = document.querySelectorAll('.tab');
+    //   const checkboxes = document.querySelectorAll('.checkbox-filters input');
+    const products = document.querySelectorAll('.product-card');
+
+    // Filter logic
+    function filterProducts() {
+      const searchText = searchInput.value.toLowerCase();
+      const selectedTab = document.querySelector('.tab.active').dataset.category;
+
+      let anyVisible = false;
+
+      products.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const category = card.dataset.category;
+        const matchesSearch = name.includes(searchText);
+        const matchesTab = selectedTab === 'all' || category === selectedTab;
+
+        if (matchesSearch && matchesTab) {
+          card.style.display = 'block';
+          // Add fade-in
+          requestAnimationFrame(() => {
+            card.classList.add('visible');
+          });
+          anyVisible = true;
+        } else {
+          card.style.display = 'none';
+          card.classList.remove('visible');
+        }
+      });
+
+      document.getElementById('noResultsMsg').style.display = anyVisible ? 'none' : 'block';
+    }
+
+    // Events
+    searchInput.addEventListener('input', filterProducts);
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        filterProducts();
+      }); 
+    });
+
+    filterProducts(); // Initial call
+
+
+    function viewProduct(id) {
+      localStorage.setItem('selectedProductId', id);
+      window.location.href = 'product_details.html';
+    }
+  </script>
+
+</body>
+
+</html>

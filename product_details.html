@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail | Mukesh Enterprise</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="images/only_svg.png" type="image/png" />
+  <!-- Optional: For Apple devices -->
+  <link rel="apple-touch-icon" href="images/only_svg.png" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/product_details.css" />
+  <script src="js/enquiry-system.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="particles-js"></div>
+<header class="glass-navbar">
+  <div class="logo">
+    <a href="index.html"><img src="images/LOGO.png" alt="Mukesh Enterprise Logo"></a>
+  </div>
+  <nav>
+    <ul id="nav-list">
+      <li><a href="index.html">Home</a></li>
+        <li><a href="#aboutus">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="product-detail">
+  <div class="product-img zoom-wrapper">
+    <div class="zoom-container">
+  <img id="product-img" src="" alt="Acrylic Trophy" class="zoom-image">
+  <div id="zoom-lens"></div>
+</div>
+  </div>
+  <div class="product-info">
+    <h1 id="product-title"></h1>
+    <p id="product-desc"></p>
+
+    <div class="tabs">
+      <button class="tab-button active" data-tab="specs">Specifications</button>
+      <button class="tab-button" data-tab="reviews">Reviews</button>
+    </div>
+
+    <div class="tab-content active" id="specs">
+      <ul id="specs-list"></ul>
+    </div>
+
+    <div class="tab-content" id="reviews">
+      <p>⭐⭐⭐⭐⭐ "Amazing quality and finish!" – Ramesh P.</p>
+      <p>⭐⭐⭐⭐ "Perfect for corporate gifting!" – Sneha K.</p>
+    </div>
+    <a href="#contact-form" class="order-btn">Enquire Now</a>
+    <a id="customizeBtn" class="order-btn ml-4">Customize Now</a> 
+  </div>
+  
+</section>
+
+
+<section class="related-products">
+  <h2>Related Products</h2>
+  <div class="related-grid" id="related-products"></div>
+</section>
+
+
+<script src="js/product-details.js"></script>
+<script>  
+particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80
+        },
+        "color": {
+          "value": "#00ff5e"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true
+        },
+        "size": {
+          "value": 4,
+          "random": true
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.2,
+          "direction": "none",
+          "random": true,
+          "straight": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true },
+          "onclick": { "enable": true }
+        }
+      },
+      "retina_detect": true
+    });
+
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+  const img = document.getElementById("product-img");
+const lens = document.getElementById("zoom-lens");
+  const customizeBtn = document.getElementById("customizeBtn");
+
+    // Update Customize button when image is loaded
+    img.addEventListener('load', () => {
+      customizeBtn.href = `customize.html?image=${encodeURIComponent(img.src)}`;
+    });
+
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      button.classList.add('active');
+      document.getElementById(button.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Lens zoom functionality
+  // const img = document.getElementById("product-img");
+  // const lens = document.getElementById("zoom-lens");
+
+  // img.addEventListener("mousemove", (e) => {
+  //   const rect = img.getBoundingClientRect();
+  //   const x = e.clientX - rect.left;
+  //   const y = e.clientY - rect.top;
+
+  //   lens.style.left = `${x - lens.offsetWidth / 2}px`;
+  //   lens.style.top = `${y - lens.offsetHeight / 2}px`;
+  //   lens.style.backgroundPosition = `-${x * 2}px -${y * 2}px`;
+  // });
+
+  // img.addEventListener("mouseenter", () => lens.style.opacity = 1);
+  // img.addEventListener("mouseleave", () => lens.style.opacity = 0);
+
+  img.addEventListener("mousemove", (e) => {
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Move lens
+    lens.style.left = `${x - lens.offsetWidth / 2}px`;
+    lens.style.top = `${y - lens.offsetHeight / 2}px`;
+
+    // Set zoomed background
+    lens.style.backgroundImage = `url('${img.src}')`;
+    lens.style.backgroundPosition = `-${x * 2}px -${y * 2}px`;
+    lens.style.backgroundSize = `${img.width * 2}px ${img.height * 2}px`;
+  });
+
+  img.addEventListener("mouseenter", () => {
+    lens.style.opacity = 1;
+  });
+
+  img.addEventListener("mouseleave", () => {
+    lens.style.opacity = 0;
+  });
+</script>
+
+
+</body>
+</html>

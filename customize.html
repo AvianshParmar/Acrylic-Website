@@ -5,6 +5,11 @@
   <title>Trophy Customizer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="css/main.css" rel="stylesheet">
+    <link rel="icon" href="images/only_svg.png" type="image/png" />
+  <!-- Optional: For Apple devices -->
+  <link rel="apple-touch-icon" href="images/only_svg.png" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <link href="https://fonts.googleapiys.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     /* Base styles */
@@ -175,7 +180,7 @@ body {
       display: flex;
       justify-content: center;
       margin-top: 2rem;
-      background: radial-gradient(#0a0a0a, #111);
+      /* background: radial-gradient(#0a0a0a, #111); */
       overflow: hidden;
     }
 
@@ -310,6 +315,10 @@ body {
     max-width: 350px;
     background-size: contain;
     margin: 0 auto;
+    filter: drop-shadow(2px 11px 8px);
+    border: 2px solid white;
+    /* transform: scale(1.03); */
+    /* box-shadow: 0 0 20px #00ff5e!important; */
   }
 
   .controls input,
@@ -327,7 +336,11 @@ body {
     font-size: 0.8rem;
   }
 }
-
+#baseImage{
+  width: 100%;
+  height: 100%;
+   object-fit: contain;
+}
 @media screen and (max-width: 480px) {
   #custom-area {
     width: 95%;
@@ -364,7 +377,7 @@ body {
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav>
       <ul id="nav-list">
-        <li><a href="#">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="#aboutus">About Us</a></li>
         <li><a href="products.html">Products</a></li>
         <li><a href="#contact">Contact Us</a></li>
@@ -375,7 +388,8 @@ body {
 <div class="flex-main-div">
   <div class="controls">
     <h2>Customize Trophy</h2>
-
+<label for="bgColorPicker">Background Color:</label>
+<input type="color" id="bgColorPicker" value="#0a0a0a" />
     <label for="logoUpload">Upload Logo:</label>
     <input type="file" id="logoUpload" accept="image/*" />
     <label for="imageScaleRange">Image Scale: <span id="imageScaleValue">100</span>%</label>
@@ -408,10 +422,15 @@ body {
 
   <div class="canvas-wrapper">
     <div id="custom-area">
-      <img id="baseImage" src="images/default-trophy.png" alt="Trophy Image" /> 
+      <img id="baseImage" onerror="this.src='images/trophy2.png'" src="" /> 
     </div>
   </div>
 </div>
+
+<footer>
+    &copy; 2025 Mukesh Enterprise | +91‑9979959364 | bhavikshah14@gmail.com<br />
+    Survey No. 238/245/246, Plot 35, Lakhabavad, Opp Sparsh Biotech, Jamnagar–361006
+  </footer> 
   <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script>
@@ -427,7 +446,12 @@ body {
     const imageScaleValueSpan = document.getElementById('imageScaleValue');
     const rotationRange = document.getElementById('rotationRange');
     const rotationValueSpan = document.getElementById('rotationValue');
+const bgColorPicker = document.getElementById('bgColorPicker');
+// const customArea = document.getElementById('custom-area');
 
+bgColorPicker.addEventListener('input', () => {
+  customArea.style.backgroundColor = bgColorPicker.value;
+});
     let currentTarget = null;
 
     function setActive(el) {
@@ -850,8 +874,57 @@ body {
     rotationValueSpan.textContent = rotationRange.value;
   </script>
  <script>
+  new Swiper('.mySwiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    });
+
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80
+        },
+        "color": {
+          "value": "#00ff5e"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true
+        },
+        "size": {
+          "value": 4,
+          "random": true
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.2,
+          "direction": "none",
+          "random": true,
+          "straight": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true },
+          "onclick": { "enable": true }
+        }
+      },
+      "retina_detect": true
+    });
+
     const params = new URLSearchParams(window.location.search);
-    const imgPath = params.get("img");
+    const imgPath = params.get("image");
     const baseImage = document.getElementById("baseImage");
 
     if (imgPath) {
